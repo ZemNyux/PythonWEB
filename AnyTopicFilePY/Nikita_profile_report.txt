@@ -1,0 +1,5 @@
+=== PROFILE REPORT ===
+Nickname: Nikita
+Matches: [8, 9, 0, 1, 2]
+Average: 4.0
+Status: К сожалению, пересдача(((
