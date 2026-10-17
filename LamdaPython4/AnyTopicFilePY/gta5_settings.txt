@@ -1,5 +1,0 @@
---- GAME CONFIG: Grand Theft Auto V ---
-Target FPS Limit: 144 FPS
-Shadow Quality: High
-Texture Quality: Performance Mode
-Optimization Mode: Ultra Performance
