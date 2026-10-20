@@ -28,3 +28,7 @@ yeild - Генераторы и yield (первые примеры):
 https://education.github.com/pack
 
 https://github.com/settings/education/benefits
+
+https://www.geeksforgeeks.org/python/name-mangling-in-python/
+
+https://skills.yourlearning.ibm.com/
