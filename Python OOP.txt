@@ -32,3 +32,7 @@ https://github.com/settings/education/benefits
 https://www.geeksforgeeks.org/python/name-mangling-in-python/
 
 https://skills.yourlearning.ibm.com/
+
+https://www.geeksforgeeks.org/python/dunder-magic-methods-python/
+
+https://rszalski.github.io/magicmethods/
