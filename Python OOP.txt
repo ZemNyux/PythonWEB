@@ -108,3 +108,21 @@ Delphi
 MVC - термін який більше притаманний ДЕСКТОП розробці
  
 MVT - сучасний веб
+
+https://peps.python.org/pep-0020/#the-zen-of-python
+
+https://flask.palletsprojects.com/en/stable/
+
+https://www.pythonguis.com/pyside6-tutorial/
+
+https://github.com/pyqt/examples
+
+https://docs.python.org/3/library/tkinter.html
+
+https://github.com/textualize/textual/
+
+https://github.com/Textualize/rich
+
+https://peps.python.org/pep-0020/
+
+https://github.com/jacob-y/django-clean-architecture
