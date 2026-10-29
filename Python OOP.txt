@@ -126,3 +126,5 @@ https://github.com/Textualize/rich
 https://peps.python.org/pep-0020/
 
 https://github.com/jacob-y/django-clean-architecture
+
+https://gist.github.com/sunmeat/a3d8fc8da5231d261da088683c6ce40e
