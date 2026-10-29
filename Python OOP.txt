@@ -135,3 +135,17 @@ Web API + React
 FAST API + React
 
 https://scalar.com/
+
+https://github.com/fastapi/fastapi
+
+https://github.com/django/django
+
+https://github.com/pallets/flask
+
+https://fastapi.tiangolo.com/
+
+https://www.djangoproject.com/ !!!
+
+https://docs.djangoproject.com/en/6.1/
+
+https://docs.djangoproject.com/en/6.1/ref/settings/
