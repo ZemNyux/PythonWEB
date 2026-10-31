@@ -149,3 +149,8 @@ https://www.djangoproject.com/ !!!
 https://docs.djangoproject.com/en/6.1/
 
 https://docs.djangoproject.com/en/6.1/ref/settings/
+
+https://open-meteo.com/en/docs
+🌦️ Docs | Open-Meteo.com
+Weather Forecast APIs with weather models from multiple national weather providers, combining the best models for accurate forecasts worldwide. Explore the API documentation to learn more about the...
+ 
