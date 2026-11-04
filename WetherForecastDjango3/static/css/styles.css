@@ -1,0 +1,66 @@
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #f1f5f9;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Стилизованная навигация в стиле Glassmorphism */
+nav {
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 18px 40px;
+    display: flex;
+    gap: 30px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav a {
+    color: #93c5fd;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.2s ease;
+}
+
+nav a:hover {
+    color: #38bdf8;
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+}
+
+/* Основной контейнер-карточка */
+main {
+    max-width: 650px;
+    margin: 60px auto;
+    padding: 40px;
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+h1 {
+    color: #38bdf8;
+    margin-top: 0;
+    font-size: 28px;
+    letter-spacing: -0.5px;
+    border-bottom: 2px solid rgba(56, 189, 248, 0.2);
+    padding-bottom: 12px;
+}
+
+p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #cbd5e1;
+    margin: 16px 0;
+}
+
+strong {
+    color: #f8fafc;
+}
