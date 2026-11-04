@@ -1,0 +1,453 @@
+{% block extra_css %}
+<style>
+    :root {
+        --primary-color: #667eea;
+        --secondary-color: #764ba2;
+        --accent-color: #00d4ff;
+        --danger-color: #ff6b6b;
+        --success-color: #51cf66;
+        --warning-color: #ffd43b;
+        --info-color: #00d4ff;
+        --light-bg: #f8f9fa;
+        --dark-text: #212529;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .mt-5 {
+        margin-top: 3rem !important;
+    }
+
+    .mb-4 {
+        margin-bottom: 1.5rem !important;
+    }
+
+    .mb-0 {
+        margin-bottom: 0 !important;
+    }
+
+    h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        color: white;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1.5rem !important;
+        animation: slideDown 0.6s ease-out;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .text-muted {
+        color: rgba(255, 255, 255, 0.85) !important;
+        font-size: 1.05rem;
+        font-weight: 500;
+    }
+
+    .row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 0 !important;
+        padding: 0 !important;
+        animation: fadeIn 0.8s ease-out 0.2s backwards;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    .col {
+        padding: 0 !important;
+        animation: scaleIn 0.5s ease-out backwards;
+    }
+
+        .col:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .col:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .col:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .col:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .col:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+    @keyframes scaleIn {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .card {
+        background: white;
+        border: none !important;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+        overflow: hidden;
+        height: 100% !important;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3) !important;
+        }
+
+    .card-body {
+        padding: 2rem !important;
+        position: relative;
+        z-index: 1;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 1rem !important;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+        .card-title::before {
+            content: '🏙️';
+            font-size: 1.8rem;
+        }
+
+    .card-text {
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.8;
+        margin: 0 !important;
+    }
+
+        .card-text br {
+            display: block;
+            content: '';
+            margin: 0.5rem 0;
+        }
+
+        .card-text::before {
+            content: '';
+            display: block;
+        }
+
+    .col:nth-child(1) .card-title {
+        color: #ff6b6b;
+    }
+
+    .col:nth-child(1) .card::before {
+        background: linear-gradient(90deg, #ff6b6b, #ff5252);
+    }
+
+    .col:nth-child(2) .card-title {
+        color: #4dabf7;
+    }
+
+    .col:nth-child(2) .card::before {
+        background: linear-gradient(90deg, #4dabf7, #1971c2);
+    }
+
+    .col:nth-child(3) .card-title {
+        color: #51cf66;
+    }
+
+    .col:nth-child(3) .card::before {
+        background: linear-gradient(90deg, #51cf66, #2f9e44);
+    }
+
+    .col:nth-child(4) .card-title {
+        color: #ffd43b;
+    }
+
+    .col:nth-child(4) .card::before {
+        background: linear-gradient(90deg, #ffd43b, #f59f00);
+    }
+
+    .col:nth-child(5) .card-title {
+        color: #a78bfa;
+    }
+
+    .col:nth-child(5) .card::before {
+        background: linear-gradient(90deg, #a78bfa, #7c3aed);
+    }
+
+    .card-text {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+        .card-text > span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: var(--light-bg);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+    .card:hover .card-text > span {
+        background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+    }
+
+    .card-text > span::before {
+        font-size: 1.2rem;
+    }
+
+    .card-text > span:first-child::before {
+        content: '👥';
+    }
+
+    .card-text > span:last-child::before {
+        content: '📍';
+    }
+
+    .alert {
+        border: none !important;
+        border-radius: 15px !important;
+        padding: 20px !important;
+        background: linear-gradient(135deg, #4dabf7 0%, #1971c2 100%) !important;
+        color: white !important;
+        box-shadow: 0 10px 30px rgba(77, 171, 247, 0.3) !important;
+        animation: slideDown 0.6s ease-out;
+        text-align: center;
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+
+    .alert-info {
+        background: linear-gradient(135deg, #4dabf7 0%, #1971c2 100%) !important;
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem !important;
+        }
+
+        .row {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card-body {
+            padding: 1.5rem !important;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+        }
+
+        body {
+            padding: 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem !important;
+        }
+
+        .text-muted {
+            font-size: 0.95rem;
+        }
+
+        .row {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .card-body {
+            padding: 1rem !important;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+        }
+
+        .card-text {
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .card {
+            background: #0f3460;
+        }
+
+        .card-text {
+            color: #bdc3c7;
+        }
+
+            .card-text > span {
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+        .card:hover .card-text > span {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        h1 {
+            color: #ecf0f1;
+        }
+
+        .text-muted {
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+    }
+
+    .shadow-sm {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .g-4 {
+        gap: 2rem !important;
+    }
+
+    .row-cols-1 {
+        grid-template-columns: 1fr;
+    }
+
+    .row-cols-md-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .row-cols-lg-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 768px) {
+        .row-cols-md-2 {
+            grid-template-columns: 1fr;
+        }
+
+        .row-cols-lg-3 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 480px) {
+        .row-cols-lg-3 {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--primary-color);
+        border-radius: 5px;
+    }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">📚 Список міст України</h1>
+    <p class="text-muted mb-4">
+        ⏱️ Оновлено: {{ updated_at }} | 🏙️ Всього міст: {{ total_cities }}
+    </p>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for city in cities %}
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ city.name }}</h5>
+                    <div class="card-text">
+                        <span>{{ city.population|floatformat:"0" }} осіб</span>
+                        <span>{{ city.region }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col">
+            <div class="alert alert-info">
+                ℹ️ Список міст порожній
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
