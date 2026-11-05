@@ -12,5 +12,12 @@ def management(request):
 def about(request):
     return render(request, 'about.html', {'title': 'Про компанію'})
 
-def contacts(request):
-    return render(request, 'contacts.html', {'title': 'Контакти'})
+def contacts(request, country=None):
+    if country == 'france':
+        return render(request, 'france.html')
+    elif country == 'ukraine':
+        return render(request, 'ukraine.html')
+    elif country == 'austria':
+        return render(request, 'austria.html')
+    else:
+        return render(request, 'contacts.html')

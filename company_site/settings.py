@@ -28,6 +28,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # кастомні middleware (порядок важливий!)
+    'middleware.custom.log_requests',           # функціональна мідлварь
+    'middleware.custom.CustomHeaderMiddleware', # класова мідлварь
 ]
 
 ROOT_URLCONF = 'company_site.urls'
