@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<p>Загальна інформація про усі філії.</p>
+<ul>
+    <li><a href="{% url 'london' %}">Лондон</a></li>
+    <li><a href="{% url 'paris' %}">Париж</a></li>
+</ul>
+{% endblock %}
