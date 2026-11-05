@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Django Response Classes</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            max-width: 900px;
+            margin: 50px auto;
+            line-height: 1.7;
+            background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
+            color: #333;
+        }
+
+        h1 {
+            color: #1a3c5e;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .card {
+            background: #f1f8ff;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        a.button {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 12px 24px;
+            margin: 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+            a.button:hover {
+                background: #2980b9;
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(52,152,219,0.3);
+            }
+
+        .note {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-top: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Класи відповідей у Django</h1>
+
+        <div class="card">
+            <h2>1. JsonResponse</h2>
+            <p>Повертає JSON-відповідь (ідеально для API)</p>
+            <a href="{% url 'json-response' %}" class="button">Переглянути JsonResponse</a>
+        </div>
+
+        <div class="card">
+            <h2>2. HttpResponseRedirect</h2>
+            <p>Редірект на іншу сторінку (наприклад після відправки форми)</p>
+            <a href="{% url 'redirect' %}" class="button">Запустити редірект на головну</a>
+        </div>
+
+        <div class="card">
+            <h2>3. FileResponse</h2>
+            <p>Завантаження файлу (PDF, зображення, архів тощо)</p>
+            <a href="{% url 'file-response' %}" class="button">Завантажити приклад файлу</a>
+        </div>
+
+        <div class="card">
+            <h2>4. StreamingHttpResponse</h2>
+            <p>Потокова передача (великі файли, генерація на льоту)</p>
+            <a href="{% url 'streaming' %}" class="button">Запустити потоковий приклад</a>
+        </div>
+
+        <p class="note">
+            Django 6.0.2 | Python 3.14 | Перевірено 25 лютого 2026
+        </p>
+    </div>
+</body>
+</html>
