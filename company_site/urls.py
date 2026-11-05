@@ -1,17 +1,10 @@
-from branches import views as branches_views  # Импортируем вьюхи из branches
-from django.contrib import admin
-from django.urls import include, path
+from core import views
+from django.urls import path, re_path
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    # Подключаем остальные разделы (home, about и т.д. из core или company_site)
-    # ... твои текущие пути ...
-
-    # Добавляем маршруты для истории прямо в корень, как требует практика:
-    path('history/', branches_views.history_main, name='history_main'),
-    path('history/dates/', branches_views.history_dates, name='history_dates'),
-    path('history/facts/', branches_views.history_facts, name='history_facts'),
-
-    # И приложение branches если нужно:
-    path('branches/', include('branches.urls')),
+    path('', views.home, name='home'),
+    re_path(r'^news/.*$', views.news, name='news'),
+    re_path(r'^management/.*$', views.management, name='management'),
+    re_path(r'^about/.*$', views.about, name='about'),
+    re_path(r'^contacts/.*$', views.contacts, name='contacts'),
 ]
