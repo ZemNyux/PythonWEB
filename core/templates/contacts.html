@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Контактні центри та представництва</h1>
+    <p>Знайдіть найближче представництво або зверніться до нашої глобальної служби підтримки</p>
+</div>
+
+<div class="detail-box">
+    <h2 class="detail-title">Головний інформаційний центр</h2>
+    <ul class="info-list">
+        <li class="info-item">
+            <span class="info-icon">📞</span>
+            <span class="info-label">Гаряча лінія:</span>
+            <span class="info-value">+380 800 500 2026 (безкоштовно по Європі)</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">✉️</span>
+            <span class="info-label">Загальна пошта:</span>
+            <span class="info-value">info@zemnyux.example &bull; support@zemnyux.example</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">🕒</span>
+            <span class="info-label">Графік роботи:</span>
+            <span class="info-value">Пн – Пт: 09:00 – 18:00 (за київським часом / UTC+2)</span>
+        </li>
+    </ul>
+</div>
+
+<div class="page-header">
+    <h2>Оберіть країну представництва</h2>
+    <p>Детальна контактна інформація локальних офісів</p>
+</div>
+
+<div class="cards-grid">
+    {% for country in countries %}
+    <div class="card">
+        <div class="card-icon">{{ country.flag }}</div>
+        <h3 class="card-title">{{ country.name }}</h3>
+        <p style="color: var(--primary); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;">{{ country.city }}</p>
+        <p class="card-text">{{ country.desc }}</p>
+        <div class="card-footer">
+            <a href="{% url 'contacts_country' country=country.code %}" class="btn btn-primary" style="width: 100%;">
+                Контакти: {{ country.name }} &rarr;
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

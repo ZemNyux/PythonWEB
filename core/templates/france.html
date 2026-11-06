@@ -1,6 +1,47 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<h1>Офіс у Франції (Париж)</h1>
-<p>Адреса: вул. Де Рівіво, 12, Париж, 75001</p>
-<p>Телефон: +33 1 40 50 60 70</p>
+<div class="breadcrumbs">
+    <a href="{% url 'home' %}">Головна</a>
+    <span class="separator">/</span>
+    <a href="{% url 'contacts' %}">Контакти</a>
+    <span class="separator">/</span>
+    <span class="current">Франція (Париж)</span>
+</div>
+
+<div class="page-header">
+    <h1>🇫🇷 Представництво у Франції</h1>
+    <p>Офіс у Парижі координує роботу з європейськими партнерами та клієнтами</p>
+</div>
+
+<div class="detail-box">
+    <h2 class="detail-title">Офіс у Парижі (Паризький філіал)</h2>
+    <ul class="info-list">
+        <li class="info-item">
+            <span class="info-icon">📍</span>
+            <span class="info-label">Адреса:</span>
+            <span class="info-value">12 Rue de Rivoli, 75001 Paris, France</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">📞</span>
+            <span class="info-label">Телефон:</span>
+            <span class="info-value">+33 1 40 50 60 70</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">✉️</span>
+            <span class="info-label">Email:</span>
+            <span class="info-value">paris.office@zemnyux.example</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">🕒</span>
+            <span class="info-label">Години роботи:</span>
+            <span class="info-value">Пн – Пт: 09:00 – 17:30 (CET)</span>
+        </li>
+    </ul>
+
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="{% url 'paris' %}" class="btn btn-primary">Переглянути деталі філії в Парижі &rarr;</a>
+        <a href="{% url 'contacts' %}" class="btn btn-outline">&larr; Всі представництва</a>
+    </div>
+</div>
 {% endblock %}

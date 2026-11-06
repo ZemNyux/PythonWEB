@@ -1,11 +1,47 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <title>Історія міста</title>
-</head>
-<body>
-    <h1>Історія нашого міста</h1>
-    <p>Ласкаво просимо до розділу загальної історії! Тут зібрана основна інформація про заснування та розвиток.</p>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="breadcrumbs">
+    <a href="{% url 'home' %}">Головна</a>
+    <span class="separator">/</span>
+    <a href="{% url 'branches_list' %}">Філії</a>
+    <span class="separator">/</span>
+    <span class="current">Історія</span>
+</div>
+
+<div class="page-header">
+    <h1>Історія розвитку компанії та філій</h1>
+    <p>{{ intro }}</p>
+</div>
+
+<div class="detail-box">
+    <h2 class="detail-title">Шлях від локальної лабораторії до європейського масштабу</h2>
+    <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;">
+        Історія ZemNyux бере початок від традицій інженерної точності та промислових інновацій кінця XIX століття. Пройшовши етапи повоєнного відродження та технологічного буму початку XXI століття, ми трансформувалися у міжнародний консорціум із філіями в Лондоні, Парижі та Берліні.
+    </p>
+
+    <div class="cards-grid" style="margin-bottom: 0;">
+        <div class="card" style="background-color: var(--bg-page);">
+            <div class="card-icon">📅</div>
+            <h3 class="card-title">Хронологія дат</h3>
+            <p class="card-text">Послідовний перелік ключових етапів заснування та масштабування від 1878 до 2026 року.</p>
+            <div class="card-footer">
+                <a href="{% url 'history_dates' %}" class="btn btn-primary" style="width: 100%;">Дивитися дати &rarr;</a>
+            </div>
+        </div>
+
+        <div class="card" style="background-color: var(--bg-page);">
+            <div class="card-icon">💡</div>
+            <h3 class="card-title">Значущі факти</h3>
+            <p class="card-text">Унікальні факти про наші дата-центри, корпоративну культуру та відкриті розробки.</p>
+            <div class="card-footer">
+                <a href="{% url 'history_facts' %}" class="btn btn-primary" style="width: 100%;">Читати факти &rarr;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="margin-top: 1.5rem;">
+    <a href="{% url 'branches_list' %}" class="btn btn-outline">&larr; До каталогу філій</a>
+</div>
+{% endblock %}

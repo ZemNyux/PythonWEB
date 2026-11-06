@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="breadcrumbs">
+    <a href="{% url 'home' %}">Головна</a>
+    <span class="separator">/</span>
+    <a href="{% url 'contacts' %}">Контакти</a>
+    <span class="separator">/</span>
+    <span class="current">Німеччина (Берлін)</span>
+</div>
+
+<div class="page-header">
+    <h1>🇩🇪 Представництво в Німеччині</h1>
+    <p>Берлінський R&D кластер штучного інтелекту та кіберзахисту</p>
+</div>
+
+<div class="detail-box">
+    <h2 class="detail-title">Офіс у Берліні</h2>
+    <ul class="info-list">
+        <li class="info-item">
+            <span class="info-icon">📍</span>
+            <span class="info-label">Адреса:</span>
+            <span class="info-value">Potsdamer Platz 1, 10785 Berlin, Deutschland</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">📞</span>
+            <span class="info-label">Телефон:</span>
+            <span class="info-value">+49 30 2000 8899</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">✉️</span>
+            <span class="info-label">Email:</span>
+            <span class="info-value">berlin.office@zemnyux.example</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">🕒</span>
+            <span class="info-label">Години роботи:</span>
+            <span class="info-value">Пн – Пт: 09:00 – 18:00 (CET)</span>
+        </li>
+    </ul>
+
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="{% url 'berlin' %}" class="btn btn-primary">Деталі філії в Берліні &rarr;</a>
+        <a href="{% url 'contacts' %}" class="btn btn-outline">&larr; Всі представництва</a>
+    </div>
+</div>
+{% endblock %}

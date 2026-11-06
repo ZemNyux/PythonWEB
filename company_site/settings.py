@@ -1,5 +1,4 @@
 import os
-import posixpath
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -7,11 +6,11 @@ SECRET_KEY = 'c20f7341-fb5b-40e1-aacd-a29094cd39ad'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'testserver']
 
 INSTALLED_APPS = [
-    'core', # !!!
-    'branches', # !!!
+    'core',  # Базові сторінки компанії
+    'branches',  # Філії та підрозділи
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,8 +38,8 @@ ROOT_URLCONF = 'company_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],          
-        'APP_DIRS': True, # !!! шукає шаблони в папках templates кожного додатку
+        'DIRS': [],
+        'APP_DIRS': True,  # шукає шаблони в папках templates кожного додатку
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -76,11 +75,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'uk-ua'
+LANGUAGE_CODE = 'uk'
 TIME_ZONE = 'UTC'
 USE_I18N = True
-USE_L10N = True
 USE_TZ = True
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 STATIC_URL = '/static/'
-STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['static']))
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

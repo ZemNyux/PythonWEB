@@ -1,4 +1,75 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<p>Ласкаво просимо на головну сторінку компанії!</p>
+<section class="hero-banner">
+    <div class="hero-badge">🚀 Міжнародні технології 2026</div>
+    <h1 class="hero-title">{{ company_name }} — Архітектура цифрового майбутнього</h1>
+    <p class="hero-lead">{{ tagline }}</p>
+    <div class="hero-actions">
+        <a href="{% url 'branches_list' %}" class="btn btn-primary">Мережа філій &rarr;</a>
+        <a href="{% url 'contacts' %}" class="btn btn-secondary">Зв'язатися з офісом</a>
+        <a href="{% url 'about' %}" class="btn btn-secondary">Про компанію</a>
+    </div>
+</section>
+
+<!-- Статистичні показники -->
+<section class="stats-grid">
+    {% for stat in stats %}
+    <div class="stat-card">
+        <div class="stat-number">{{ stat.num }}</div>
+        <div class="stat-label">{{ stat.label }}</div>
+    </div>
+    {% endfor %}
+</section>
+
+<!-- Технологічні напрямки -->
+<div class="page-header">
+    <h2>Напрямки діяльності</h2>
+    <p>Ключові сфери експертизи наших інженерних команд</p>
+</div>
+
+<section class="cards-grid">
+    {% for service in services %}
+    <div class="card">
+        <div class="card-icon">{{ service.icon }}</div>
+        <h3 class="card-title">{{ service.title }}</h3>
+        <p class="card-text">{{ service.desc }}</p>
+    </div>
+    {% endfor %}
+</section>
+
+<!-- Швидкий доступ до розділів -->
+<div class="page-header">
+    <h2>Швидкий перехід по порталу</h2>
+    <p>Оберіть розділ або скористайтеся вкладеними маршрутами</p>
+</div>
+
+<section class="cards-grid">
+    <div class="card">
+        <span class="badge badge-primary">Розділ</span>
+        <h3 class="card-title" style="margin-top: 0.75rem;">Міжнародні філії</h3>
+        <p class="card-text">Ознайомтеся з нашими хабами у Лондоні, Парижі та Берліні, а також з історією заснування.</p>
+        <div class="card-footer">
+            <a href="{% url 'branches_list' %}" class="btn btn-outline" style="width: 100%;">Перейти до філій &rarr;</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="badge badge-success">Новини</span>
+        <h3 class="card-title" style="margin-top: 0.75rem;">Останні анонси</h3>
+        <p class="card-text">Свіжі релізи платформи Yellow Submarine, нові сертифікації та розширення R&D.</p>
+        <div class="card-footer">
+            <a href="{% url 'news' %}" class="btn btn-outline" style="width: 100%;">Читати новини &rarr;</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <span class="badge badge-info">Зв'язок</span>
+        <h3 class="card-title" style="margin-top: 0.75rem;">Контакти офісів</h3>
+        <p class="card-text">Прямі телефони та адреси представництв в Україні, Франції, Австрії та Німеччині.</p>
+        <div class="card-footer">
+            <a href="{% url 'contacts' %}" class="btn btn-outline" style="width: 100%;">Відкрити контакти &rarr;</a>
+        </div>
+    </div>
+</section>
 {% endblock %}

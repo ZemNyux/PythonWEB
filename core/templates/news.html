@@ -1,4 +1,28 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<p>Останні новини компанії.</p>
+<div class="page-header">
+    <h1>Новини та події</h1>
+    <p>Останні технологічні оновлення, релізи платформи та події в ZemNyux Inc.</p>
+</div>
+
+<div class="article-list">
+    {% for article in articles %}
+    <article class="article-card">
+        <div class="article-meta">
+            <span class="badge {{ article.badge_class }}">{{ article.category }}</span>
+            <span>&bull;</span>
+            <span>{{ article.date }}</span>
+        </div>
+        <h2 class="article-title">{{ article.title }}</h2>
+        <p class="article-summary">{{ article.summary }}</p>
+    </article>
+    {% endfor %}
+</div>
+
+<div class="detail-box" style="margin-top: 2.5rem; background-color: var(--primary-light); border-color: #bfdbfe;">
+    <h3 style="color: var(--secondary); margin-bottom: 0.5rem;">Будьте в курсі інновацій</h3>
+    <p style="color: var(--text-muted); margin-bottom: 1rem;">Ми щомісяця публікуємо інженерні звіти про роботу наших дослідницьких груп у Лондоні, Парижі та Берліні.</p>
+    <a href="{% url 'branches_list' %}" class="btn btn-primary">Дізнатися більше про R&D філії &rarr;</a>
+</div>
 {% endblock %}

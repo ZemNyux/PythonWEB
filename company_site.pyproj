@@ -6,6 +6,7 @@
     <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
     <SuppressEnvironmentCreationPrompt>True</SuppressEnvironmentCreationPrompt>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == '' ">Debug</Configuration>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
@@ -34,24 +35,37 @@
     <Compile Include="branches\apps.py" />
     <Compile Include="branches\urls.py" />
     <Compile Include="branches\views.py" />
+    <Compile Include="branches\tests.py" />
     <Compile Include="core\apps.py" />
     <Compile Include="core\urls.py" />
     <Compile Include="core\views.py" />
+    <Compile Include="core\tests.py" />
     <Compile Include="manage.py" />
     <Compile Include="company_site\settings.py" />
     <Compile Include="company_site\urls.py" />
     <Compile Include="company_site\wsgi.py" />
+    <Compile Include="middleware\custom.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="branches\templates\berlin.html" />
     <Content Include="branches\templates\branches_list.html" />
+    <Content Include="branches\templates\dates.html" />
+    <Content Include="branches\templates\facts.html" />
+    <Content Include="branches\templates\history.html" />
     <Content Include="branches\templates\london.html" />
     <Content Include="branches\templates\paris.html" />
+    <Content Include="core\templates\404.html" />
     <Content Include="core\templates\about.html" />
+    <Content Include="core\templates\austria.html" />
     <Content Include="core\templates\base.html" />
     <Content Include="core\templates\contacts.html" />
+    <Content Include="core\templates\france.html" />
+    <Content Include="core\templates\germany.html" />
     <Content Include="core\templates\home.html" />
     <Content Include="core\templates\management.html" />
     <Content Include="core\templates\news.html" />
+    <Content Include="core\templates\ukraine.html" />
+    <Content Include="static\css\style.css" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="branches\" />
@@ -59,12 +73,15 @@
     <Folder Include="core\templates\" />
     <Folder Include="company_site\" />
     <Folder Include="core\" />
+    <Folder Include="middleware\" />
+    <Folder Include="static\" />
+    <Folder Include="static\css\" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include="env\">
       <Id>env</Id>
-      <Version>3.14</Version>
-      <Description>env (Python 3.14 (64-bit))</Description>
+      <Version>3.11</Version>
+      <Description>env (Python 3.11 (64-bit))</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
@@ -72,8 +89,6 @@
     </Interpreter>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
-  <!-- Specify pre- and post-build commands in the BeforeBuild and 
-       AfterBuild targets below. -->
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">

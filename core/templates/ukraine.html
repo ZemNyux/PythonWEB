@@ -1,6 +1,63 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<h1>Офіс в Україні (Київ / Одеса)</h1>
-<p>Адреса: вул. Дерибасівська, 25, Одеса, 65000</p>
-<p>Телефон: +380 48 700 00 00</p>
+<div class="breadcrumbs">
+    <a href="{% url 'home' %}">Головна</a>
+    <span class="separator">/</span>
+    <a href="{% url 'contacts' %}">Контакти</a>
+    <span class="separator">/</span>
+    <span class="current">Україна (Київ / Одеса)</span>
+</div>
+
+<div class="page-header">
+    <h1>🇺🇦 Головні центри розробки в Україні</h1>
+    <p>Основні інженерні команди та центр технічної підтримки клієнтів</p>
+</div>
+
+<div class="detail-box">
+    <h2 class="detail-title">Одеський інженерний хаб</h2>
+    <ul class="info-list">
+        <li class="info-item">
+            <span class="info-icon">📍</span>
+            <span class="info-label">Адреса:</span>
+            <span class="info-value">вул. Дерибасівська, 25, Одеса, 65000, Україна</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">📞</span>
+            <span class="info-label">Телефон:</span>
+            <span class="info-value">+380 48 700 00 00</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">✉️</span>
+            <span class="info-label">Email:</span>
+            <span class="info-value">odessa.dev@zemnyux.example</span>
+        </li>
+    </ul>
+</div>
+
+<div class="detail-box">
+    <h2 class="detail-title">Київський офіс зв'язків</h2>
+    <ul class="info-list">
+        <li class="info-item">
+            <span class="info-icon">📍</span>
+            <span class="info-label">Адреса:</span>
+            <span class="info-value">вул. Хрещатик, 14, Київ, 01001, Україна</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">📞</span>
+            <span class="info-label">Телефон:</span>
+            <span class="info-value">+380 44 200 00 00</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">✉️</span>
+            <span class="info-label">Email:</span>
+            <span class="info-value">kyiv.hq@zemnyux.example</span>
+        </li>
+    </ul>
+
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="{% url 'contacts' %}" class="btn btn-outline">&larr; Всі представництва</a>
+        <a href="{% url 'branches_list' %}" class="btn btn-primary">Каталог філій &rarr;</a>
+    </div>
+</div>
 {% endblock %}

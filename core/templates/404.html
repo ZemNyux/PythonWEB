@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="error-container">
+    <div class="error-badge">404</div>
+    <h1 class="error-title">Розділ не знайдено</h1>
+    <p class="error-desc">
+        На жаль, сторінка за адресою, яку ви шукаєте, була переміщена, перейменована або ніколи не існувала. Перевірте правильність написання URL або скористайтеся основними розділами нашого порталу.
+    </p>
+
+    {% if requested_path %}
+    <div class="error-box">
+        Запитуваний шлях: <strong>{{ requested_path }}</strong>
+    </div>
+    {% endif %}
+
+    <div class="error-links">
+        <a href="{% url 'home' %}" class="btn btn-primary">На головну</a>
+        <a href="{% url 'branches_list' %}" class="btn btn-outline">Каталог філій</a>
+        <a href="{% url 'contacts' %}" class="btn btn-outline">Контакти</a>
+    </div>
+</div>
+{% endblock %}

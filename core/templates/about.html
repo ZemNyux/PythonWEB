@@ -1,4 +1,43 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<p>Інформація про компанію.</p>
+<div class="page-header">
+    <h1>Про компанію ZemNyux Inc.</h1>
+    <p>Історія, фундаментальні цінності та інженерна філософія</p>
+</div>
+
+<div class="detail-box">
+    <h2 class="detail-title">Наша місія та бачення</h2>
+    <p style="font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem;">
+        ZemNyux Inc. — це міжнародна технологічна компанія, яка поєднує високі стандарти надійності корпоративного ПЗ з інноваційними дослідженнями в галузі штучного інтелекту та децентралізованих архітектур. Ми створюємо програмні комплекси, які безперебійно функціонують у 4 країнах світу та обслуговують мільйони запитів щодня.
+    </p>
+
+    <div style="background-color: var(--primary-light); padding: 1.25rem 1.5rem; border-left: 4px solid var(--primary); border-radius: var(--radius-sm);">
+        <strong style="color: var(--primary);">Інженерний девіз:</strong>
+        <span style="color: var(--secondary);"> "Чистота коду, стабільність інфраструктури та безперервне масштабування."</span>
+    </div>
+</div>
+
+<div class="page-header">
+    <h2>Ключові принципи нашої роботи</h2>
+    <p>Стандарти, на яких будується співпраця з клієнтами та всередині команд</p>
+</div>
+
+<section class="cards-grid">
+    {% for principle in principles %}
+    <div class="card">
+        <h3 class="card-title">{{ principle.title }}</h3>
+        <p class="card-text">{{ principle.desc }}</p>
+    </div>
+    {% endfor %}
+</section>
+
+<div class="detail-box" style="text-align: center; background-color: #f8fafc;">
+    <h3 style="font-size: 1.35rem; margin-bottom: 0.5rem; color: var(--secondary);">Бажаєте дізнатися більше?</h3>
+    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Перегляньте нашу команду топ-менеджерів або каталог міжнародних філій.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="{% url 'management' %}" class="btn btn-primary">Рада директорів &rarr;</a>
+        <a href="{% url 'branches_list' %}" class="btn btn-outline">Каталог філій &rarr;</a>
+    </div>
+</div>
 {% endblock %}

@@ -1,4 +1,51 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<p>Інформація про філію в Лондоні.</p>
+<div class="breadcrumbs">
+    <a href="{% url 'home' %}">Головна</a>
+    <span class="separator">/</span>
+    <a href="{% url 'branches_list' %}">Філії</a>
+    <span class="separator">/</span>
+    <span class="current">Лондон</span>
+</div>
+
+<div class="page-header">
+    <h1>🇬🇧 Філія в Лондоні (Велика Британія)</h1>
+    <p>Провідний європейський фінтех-хаб та інноваційний центр розподілених систем</p>
+</div>
+
+<div class="detail-box">
+    <h2 class="detail-title">Про лондонський підрозділ</h2>
+    <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem;">
+        Лондонський офіс функціонує з {{ established }} року та розташований у діловому серці столиці — Кенері-Ворф. Команда спеціалізується на розробці високошвидкісних фінансових шлюзів, інтеграції з банківськими API та оптимізації хмарних ресурсів для клієнтів із Великої Британії та Північної Америки.
+    </p>
+
+    <ul class="info-list">
+        <li class="info-item">
+            <span class="info-icon">📍</span>
+            <span class="info-label">Локація:</span>
+            <span class="info-value">{{ address }}</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">🎯</span>
+            <span class="info-label">Спеціалізація:</span>
+            <span class="info-value">{{ specialization }}</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">📞</span>
+            <span class="info-label">Прямий телефон:</span>
+            <span class="info-value">{{ phone }}</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">✉️</span>
+            <span class="info-label">Електронна пошта:</span>
+            <span class="info-value">{{ email }}</span>
+        </li>
+    </ul>
+
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="{% url 'branches_list' %}" class="btn btn-outline">&larr; До списку філій</a>
+        <a href="{% url 'history_main' %}" class="btn btn-primary">Історія розвитку філій &rarr;</a>
+    </div>
+</div>
 {% endblock %}

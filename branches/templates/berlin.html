@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="breadcrumbs">
+    <a href="{% url 'home' %}">Головна</a>
+    <span class="separator">/</span>
+    <a href="{% url 'branches_list' %}">Філії</a>
+    <span class="separator">/</span>
+    <span class="current">Берлін</span>
+</div>
+
+<div class="page-header">
+    <h1>🇩🇪 Філія в Берліні (Німеччина)</h1>
+    <p>R&D лабораторія штучного інтелекту, квантово-стійкої безпеки та розподілених алгоритмів</p>
+</div>
+
+<div class="detail-box">
+    <h2 class="detail-title">Про берлінський R&D кластер</h2>
+    <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem;">
+        Найновіший дослідницький підрозділ ZemNyux Inc., заснований у {{ established }} році на Потсдамській площі. Фокусується на глибинному навчанні нейромереж, автономних агентах для автоматизації коду та безпеці критичної хмарної інфраструктури.
+    </p>
+
+    <ul class="info-list">
+        <li class="info-item">
+            <span class="info-icon">📍</span>
+            <span class="info-label">Локація:</span>
+            <span class="info-value">{{ address }}</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">🎯</span>
+            <span class="info-label">Спеціалізація:</span>
+            <span class="info-value">{{ specialization }}</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">📞</span>
+            <span class="info-label">Прямий телефон:</span>
+            <span class="info-value">{{ phone }}</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">✉️</span>
+            <span class="info-label">Електронна пошта:</span>
+            <span class="info-value">{{ email }}</span>
+        </li>
+    </ul>
+
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="{% url 'branches_list' %}" class="btn btn-outline">&larr; До списку філій</a>
+        <a href="{% url 'contacts_country' country='germany' %}" class="btn btn-primary">Контакти в Німеччині &rarr;</a>
+    </div>
+</div>
+{% endblock %}

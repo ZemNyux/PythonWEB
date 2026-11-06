@@ -1,4 +1,25 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<p>Інформація про керівництво компанії.</p>
+<div class="page-header">
+    <h1>Керівництво компанії</h1>
+    <p>Рада директорів та ключові лідери інженерних і бізнес-напрямів ZemNyux Inc.</p>
+</div>
+
+<div class="team-grid">
+    {% for member in team %}
+    <div class="team-card">
+        <div class="team-avatar">{{ member.initials }}</div>
+        <h3 class="team-name">{{ member.name }}</h3>
+        <div class="team-role">{{ member.role }}</div>
+        <p class="team-bio">{{ member.bio }}</p>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="detail-box" style="margin-top: 2.5rem; text-align: center;">
+    <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--secondary);">Зв'язок із радою директорів</h3>
+    <p style="color: var(--text-muted); margin-bottom: 1.25rem;">Для офіційних запитів, інвестиційних пропозицій та медіа-контактів.</p>
+    <a href="{% url 'contacts' %}" class="btn btn-primary">Зв'язатися з прес-службою &rarr;</a>
+</div>
 {% endblock %}

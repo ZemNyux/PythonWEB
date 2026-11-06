@@ -1,6 +1,4 @@
 import time
-from django.http import HttpResponse
-
 
 # функціональний middleware — логування запитів
 def log_requests(get_response):
@@ -35,7 +33,7 @@ class CustomHeaderMiddleware:
         response = self.get_response(request)
 
         # додаємо свій заголовок (можна будь-яку логіку)
-        response['X-Powered-By'] = 'Sunmeat 26/02/2026'
-        response['X-Company-Name'] = 'Sunmeat Inc.'
+        response['X-Powered-By'] = 'ZemNyux 26/02/2026'
+        response['X-Company-Name'] = 'ZemNyux Inc.'
 
         return response
