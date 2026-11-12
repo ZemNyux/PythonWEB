@@ -172,3 +172,6 @@ Infrastructure
 Application
 Presentation
 Tests
+
+
+https://docs.djangoproject.com/en/6.0/ref/templates/language/
