@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Філія в Одесі – Versailles Cortège{% endblock %}
+
+{% block content %}
+<main class="main-branch">
+    <section class="branch-hero">
+        <div class="container">
+            <h1 class="page-title">Філія в Одесі</h1>
+            <p class="branch-subtitle">Головний офіс та логістичний центр</p>
+        </div>
+    </section>
+
+    <section class="branch-content">
+        <div class="container">
+            <div class="branch-info">
+                <h2>Одеса – серце нашої логістики</h2>
+                <p>Одеська філія є головним офісом Versailles Cortège та ключовим пунктом відправлення всіх вантажів до Франції. Саме тут відбувається приймання, пакування, консолідація, митне оформлення та завантаження на транспорт.</p>
+                <p>Завдяки розташуванню в центрі Одеси та близькості до порту ми маємо можливість швидко комбінувати автомобільні та морські перевезення, що особливо важливо для великих та середніх партій.</p>
+            </div>
+
+            <div class="branch-features">
+                <h3>Що ми робимо в Одесі</h3>
+                <ul>
+                    <li>Збір вантажів по всій Україні</li>
+                    <li>Професійне пакування та маркування</li>
+                    <li>Митне оформлення експорту</li>
+                    <li>Консолідація LTL-вантажів</li>
+                    <li>Тимчасове зберігання на складі</li>
+                    <li>Підготовка документів для перевезення</li>
+                </ul>
+            </div>
+
+            <div class="branch-partner-link">
+                <h3>Наше представництво у Франції</h3>
+                <p>Дізнайтеся детальніше про нашу філію в Орлеані — ми працюємо в тісній координації, щоб забезпечити безперебійний контроль вантажів на обох кінцях маршруту.</p>
+                <a href="{% url 'orleans' %}" class="btn btn-outline btn-partner">
+                    Перейти до філії в Орлеані
+                </a>
+            </div>
+
+            <div class="contact-mini">
+                <h4>Контакти філії в Одесі</h4>
+                <p>вул. Дерибасівська, 10, офіс 305</p>
+                <p>
+                    <strong><a href="tel:+380480300035">+38 (048) 03-000-35</a></strong> •
+                    <strong><a href="tel:86504006">8650 4006</a></strong>
+                </p>
+                <p><a href="mailto:info@versaillescortege.com">info@versaillescortege.com</a></p>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

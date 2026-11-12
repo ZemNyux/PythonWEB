@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Філії Versailles Cortège{% endblock %}
+
+{% block content %}
+<main class="main-branches">
+    <section class="branches-hero">
+        <div class="container">
+            <h1 class="page-title">Наші філії</h1>
+            <p class="page-subtitle">Два ключові офіси для контролю вантажів на обох кінцях маршруту</p>
+        </div>
+    </section>
+
+    <section class="branches-list">
+        <div class="container">
+            <div class="branches-grid">
+                <div class="branch-card">
+                    <h2 class="branch-city">Одеса, Україна</h2>
+                    <p class="branch-role">Головний офіс та логістичний хаб</p>
+                    <ul>
+                        <li>Приймання та відправка вантажів по всій Україні</li>
+                        <li>Митне оформлення експорт</li>
+                        <li>Консолідація дрібних вантажів</li>
+                        <li>Склад тимчасового зберігання</li>
+                    </ul>
+                    <a href="{% url 'odesa' %}" class="btn btn-outline">Детальніше про філію в Одесі</a>
+                </div>
+
+                <div class="branch-card">
+                    <h2 class="branch-city">Орлеан, Франція</h2>
+                    <p class="branch-role">Представництво в ЄС</p>
+                    <ul>
+                        <li>Митне оформлення імпорт до ЄС</li>
+                        <li>Доставка по всій Франції та країнах ЄС</li>
+                        <li>Розконсолідація та адресна доставка</li>
+                        <li>Супровід зворотних вантажів</li>
+                    </ul>
+                    <a href="{% url 'orleans' %}" class="btn btn-outline">Детальніше про філію в Орлеані</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

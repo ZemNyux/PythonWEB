@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Versailles Cortège – Перевезення під ключ Україна ↔ Франція{% endblock %}
+
+{% block content %}
+<main class="main-home">
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Versailles Cortège</h1>
+            <p class="hero-subtitle">Ваш надійний партнер у перевезеннях під ключ з України до Франції та назад</p>
+            <a href="{% url 'contacts' %}" class="btn btn-primary">Отримати розрахунок</a>
+        </div>
+    </section>
+
+    <section class="welcome-section">
+        <div class="container">
+            <h2 class="section-title">Ласкаво просимо до Versailles Cortège</h2>
+            <div class="welcome-text">
+                <p>Компанія Versailles Cortège – це ваш надійний партнер у сфері міжнародних перевезень під ключ між Україною та Францією. Заснована Олександром Загоруйко, який має 19 років досвіду в логістиці, наша команда пропонує повний комплекс послуг: від завантаження вантажу в Одесі до доставки «до дверей» у будь-якому місті Франції та зворотні перевезення.</p>
+                <p>Ми спеціалізуємося на автомобільних, морських та авіаперевезеннях, забезпечуючи швидкість, безпеку, прозорі тарифи та повний супровід: митне оформлення, страхування, трекінг у реальному часі. Завдяки власним представництвам в Одесі та Орлеані ми контролюємо весь маршрут на обох кінцях.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3>19 років досвіду</h3>
+                    <p>Олександр особисто контролює ключові процеси</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Під ключ</h3>
+                    <p>Від завантаження до розвантаження без вашої участі</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Два офіси</h3>
+                    <p>Одеса + Орлеан = швидке вирішення будь-яких питань</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Готові доставити ваш вантаж?</h2>
+            <p>Залиште заявку – розрахуємо за 15 хвилин</p>
+            <a href="{% url 'contacts' %}" class="btn btn-primary">Замовити перевезення</a>
+        </div>
+    </section>
+</main>
+{% endblock %}

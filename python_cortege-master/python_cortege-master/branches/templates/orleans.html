@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}Antenne d'Orléans – Versailles Cortège{% endblock %}
+{% block content %}
+<main class="main-branch">
+    <section class="branch-hero">
+        <div class="container">
+            <h1 class="page-title">Antenne d'Orléans</h1>
+            <p class="branch-subtitle">Représentation en France et point d'entrée dans l'UE</p>
+        </div>
+    </section>
+
+    <section class="branch-content">
+        <div class="container">
+            <div class="branch-info">
+                <h2>Orléans – notre passerelle vers l'Europe</h2>
+                <p>L'antenne d'Orléans assure un contrôle total sur l'arrivée, le dédouanement et la livraison finale des marchandises en France et dans les pays de l'UE. Grâce à sa localisation stratégique (centre de la France, à proximité des autoroutes A10 et A19), nous assurons une distribution rapide vers Paris, Lyon, Marseille, Bordeaux, Toulouse et de nombreuses autres régions.</p>
+                <p>L'équipe de notre bureau français parle couramment français, anglais et ukrainien, ce qui accélère considérablement les échanges avec les administrations locales et les transporteurs.</p>
+            </div>
+
+            <div class="branch-features">
+                <h3>Nos prestations à Orléans</h3>
+                <ul>
+                    <li>Dédouanement à l'importation dans l'UE</li>
+                    <li>Déconsolidation des chargements</li>
+                    <li>Livraison à l'adresse en France</li>
+                    <li>Organisation des retours de marchandises</li>
+                    <li>Suivi et accompagnement des documents et certificats</li>
+                    <li>Stockage temporaire</li>
+                </ul>
+            </div>
+
+            <div class="branch-partner-link">
+                <h3>Notre siège principal en Ukraine</h3>
+                <p>Découvrez plus d'informations sur notre antenne d'Odessa – c'est de là que partent toutes les expéditions vers la France. Nous travaillons en coordination permanente entre nos deux bureaux pour une efficacité maximale.</p>
+                <a href="{% url 'odesa' %}" class="btn btn-outline btn-partner">
+                    Aller à l'antenne d'Odessa
+                </a>
+            </div>
+
+            <div class="contact-mini">
+                <h4>Coordonnées de l'antenne d'Orléans</h4>
+                <p>1 Av. du Champ de Mars, 45100 Orléans, France</p>
+                <p>
+                    <strong><a href="tel:+330630300035">+33 (063) 03-000-35</a></strong>
+                </p>
+                <p>
+                    <strong>WhatsApp / Telegram : <a href="tel:+4815162342">4 8 15 16 23 42</a></strong>
+                </p>
+                <p><a href="mailto:orleans@versaillescortege.com">orleans@versaillescortege.com</a></p>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

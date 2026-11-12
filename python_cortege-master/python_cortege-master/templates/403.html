@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}403 – Доступ заборонено – Versailles Cortège{% endblock %}
+
+{% block content %}
+<main class="error-page error-403">
+    <div class="container error-container">
+        <h1 class="error-code">403</h1>
+        <h2 class="error-title">Доступ заборонено</h2>
+        <p class="error-message">
+            Ви не маєте прав для перегляду цієї сторінки.<br>
+            Можливо, потрібно увійти в систему або звернутися до адміністратора.
+        </p>
+        <a href="{% url 'home' %}" class="btn btn-primary btn-large error-btn">
+            Повернутися на головну
+        </a>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Керівництво – Versailles Cortège{% endblock %}
+
+{% block content %}
+<main class="main-leadership">
+    <section class="leadership-hero">
+        <div class="container">
+            <h1 class="page-title">Керівництво компанії</h1>
+        </div>
+    </section>
+
+    <section class="leadership-content">
+        <div class="container">
+            <div class="director-card">
+                <div class="director-photo-placeholder">
+                    {% load static %}
+                    <img src="{% static 'img/oleksandr.png' %}" alt="Олександр">
+                </div>
+                <div class="director-info">
+                    <h2 class="director-name">Олександр Загоруйко</h2>
+                    <p class="director-position">Засновник та генеральний директор</p>
+                    <p class="director-text">37 років, з яких 19 років присвячено логістиці та міжнародним перевезенням. Почав кар’єру у 18 років як логіст-початківець, пройшов шлях до керівництва складними проєктами між Україною та Європою.</p>
+                    <p class="director-text">Особисто контролює стратегічний розвиток <b>Versailles Cortège</b>, забезпечує найвищі стандарти якості та клієнтоорієнтований підхід. Головне бачення – створити компанію, яка не просто возить вантажі, а допомагає бізнесу зростати.</p>
+                </div>
+            </div>
+
+            <div class="team-philosophy">
+                <h3>Наша філософія під керівництвом Олександра</h3>
+                <ul class="philosophy-list">
+                    <li>Відповідальність на кожному етапі</li>
+                    <li>Інновації та сучасні технології</li>
+                    <li>Максимальна ефективність і економія часу клієнта</li>
+                    <li>Особиста участь керівника в ключових проектах</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

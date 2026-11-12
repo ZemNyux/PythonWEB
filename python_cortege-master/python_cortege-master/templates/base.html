@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Versailles Cortège – Перевезення Україна ↔ Франція{% endblock %}</title>
+
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body class="site-body">
+
+    <header class="site-header">
+        <div class="container header-container">
+
+            <nav class="main-navigation">
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="{% url 'home' %}" class="nav-link">Versailles Cortège</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'about' %}" class="nav-link">Про компанію</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'management' %}" class="nav-link">Керівництво</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'news' %}" class="nav-link">Новини</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'branches_list' %}" class="nav-link">Філії</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'contacts' %}" class="nav-link nav-link--highlight">Контакти</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="site-main">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-copyright">© 2007-{% now "Y" %} Versailles Cortège. Усі права захищено.</p>
+                <p class="footer-slogan">Ваш вантаж. Наш шлях. Україна – Франція без зайвих слів.</p>
+                <div class="footer-contacts">
+                    <p>Одеса: <a href="tel:86504006">8650 4006</a></p>
+                    <p>Орлеан: <a href="tel:4815162342">4 8 15 16 23 42</a></p>
+                    <p><a href="mailto:info@versaillescortege.com">info@versaillescortege.com</a></p>
+                </div>
+
+                <div class="footer-links">
+                    <a href="{% url 'about' %}">Про компанію</a> •
+                    <a href="{% url 'contacts' %}">Контакти</a> •
+                    <a href="https://gist.github.com/sunmeat/cd82bd9acc5e84c28900162adabb51dd" target="_blank">Політика конфіденційності</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
