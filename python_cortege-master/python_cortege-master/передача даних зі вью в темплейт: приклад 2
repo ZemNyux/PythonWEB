@@ -1,0 +1,121 @@
+views.py:
+
+from django.shortcuts import render
+
+def branches_list(request):
+    return render(request, 'branches_list.html', {'title': 'Філії'})
+
+def odesa(request):
+    branch = {
+        'name': 'Одеська філія',
+        'role': 'Головний офіс та логістичний центр',
+        'address': {
+            'street': 'вул. Дерибасівська',
+            'number': '10',
+            'office': '305',
+            'city': 'Одеса',
+            'country': 'Україна'
+        },
+        'phones': ['+38 (048) 03-000-35', '8650 4006'],
+        'email': 'info@versaillescortege.com',
+        'services': [
+            'Збір вантажів по всій Україні',
+            'Професійне пакування та маркування',
+            'Митне оформлення експорту',
+            'Консолідація LTL-вантажів',
+            'Тимчасове зберігання на складі',
+            'Підготовка документів для перевезення'
+        ],
+        'cooperation_link': {
+            'text': 'Філія в Орлеані',
+            'url_name': 'orleans'
+        }
+    }
+
+    context = {
+        'page_title': 'Філія в Одесі – Versailles Cortège',
+        'branch': branch,
+        'current_year': 2026,
+    }
+    return render(request, 'odesa.html', context)
+
+def orleans(request):
+    return render(request, 'orleans.html', {'title': 'Філія в Орлеані'})
+  
+=============================================================================================
+
+odesa.html:
+  
+{% extends 'base.html' %}
+
+{% block title %}
+{{ page_title }}
+{% endblock %}
+
+{% block content %}
+
+<main class="main-branch">
+    <section class="branch-hero">
+        <div class="container">
+            <h1 class="page-title">{{ branch.name }}</h1>
+            <p class="branch-subtitle">{{ branch.role }}</p>
+        </div>
+    </section>
+
+    <section class="branch-content">
+        <div class="container">
+
+            <div class="branch-info">
+                <h2>{{ branch.address.city }} – серце нашої логістики</h2>
+                <p>
+                    {{ branch.name }} є головним офісом Versailles Cortège та ключовим пунктом відправлення всіх вантажів до Франції.
+                    Саме тут відбувається приймання, пакування, консолідація, митне оформлення та завантаження на транспорт.
+                </p>
+                <p>
+                    Завдяки розташуванню в центрі {{ branch.address.city }} та близькості до порту ми маємо можливість швидко
+                    комбінувати автомобільні та морські перевезення, що особливо важливо для великих та середніх партій.
+                </p>
+            </div>
+
+            <div class="branch-features">
+                <h3>{{ branch.address.city }}: Що ми тут робимо</h3>
+                <ul>
+                    <li>{{ branch.services.0 }}</li>
+                    <li>{{ branch.services.1 }}</li>
+                    <li>{{ branch.services.2 }}</li>
+                    <li>{{ branch.services.3 }}</li>
+                    <li>{{ branch.services.4 }}</li>
+                    <li>{{ branch.services.5 }}</li>
+                </ul>
+            </div>
+
+            <div class="branch-partner-link">
+                <h3>Наше представництво у Франції</h3>
+                <p>
+                    Дізнайтеся детальніше про нашу філію в Орлеані — ми працюємо в тісній координації,
+                    щоб забезпечити безперебійний контроль вантажів на обох кінцях маршруту.
+                </p>
+                <a href="{% url branch.cooperation_link.url_name %}" class="btn btn-outline btn-partner">
+                    Перейти до {{ branch.cooperation_link.text }}
+                </a>
+            </div>
+
+            <div class="contact-mini">
+                <h4>Контакти філії: {{ branch.address.city }}</h4>
+                <p>
+                    {{ branch.address.street }}, {{ branch.address.number }}, офіс {{ branch.address.office }}
+                </p>
+                <p>
+                    <strong><a href="tel:{{ branch.phones.0 }}">{{ branch.phones.0 }}</a></strong> •
+                    <strong><a href="tel:{{ branch.phones.1 }}">{{ branch.phones.1 }}</a></strong>
+                </p>
+                <p>
+                    <a href="mailto:{{ branch.email }}">{{ branch.email }}</a>
+                </p>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+{% endblock %}
