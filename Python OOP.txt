@@ -173,12 +173,15 @@ Application
 Presentation
 Tests
 
+------------------------------------------------------------------
 
 https://docs.djangoproject.com/en/6.0/ref/templates/language/
 
 https://docs.djangoproject.com/en/6.0/ref/models/fields/
 
 XAMPP Installers and Downloads for Apache Friends
+
+-----------------------------------------------------------------
 
 https://www.oracle.com/database/free/
 
@@ -188,3 +191,5 @@ postgres https://www.postgresql.org/download/
 PostgreSQL: Downloads
 
 EDB: Open-Source, Enterprise Postgres Database Management
+
+-------------------------------------------------------------------
