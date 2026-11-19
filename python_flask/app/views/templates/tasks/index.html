@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="mb-4">Каталог фільмів (MVC)</h1>
+
+<form method="POST" action="{{ url_for('store') }}" class="card card-body mb-4">
+    <h5 class="card-title mb-3">Додати фільм</h5>
+    <div class="row g-2 mb-2">
+        <div class="col-md-4">
+            <input type="text" name="title" class="form-control" placeholder="Назва фільму (напр. Таксі 5)" required>
+        </div>
+        <div class="col-md-4">
+            <input type="text" name="genre" class="form-control" placeholder="Жанр (напр. бойовик, комедія)" required>
+        </div>
+        <div class="col-md-4">
+            <input type="text" name="director" class="form-control" placeholder="Режисер" required>
+        </div>
+    </div>
+    <div class="row g-2 mb-2">
+        <div class="col-md-3">
+            <input type="number" name="release_year" class="form-control" placeholder="Рік випуску" value="2018" required>
+        </div>
+        <div class="col-md-3">
+            <input type="number" name="duration_minutes" class="form-control" placeholder="Тривалість (хв)" value="102" required>
+        </div>
+        <div class="col-md-6">
+            <input type="text" name="studio" class="form-control" placeholder="Студія (напр. EuropaCorp)" required>
+        </div>
+    </div>
+    <div class="mb-2">
+        <textarea name="actors" rows="3" class="form-control" placeholder="Актори (кожен з нового рядка у форматі: П.І.Б. — Роль)"></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Додати фільм</button>
+</form>
+
+{% if movies %}
+    {% for movie in movies %}
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <div>
+                <strong>#{{ movie.id }} — {{ movie.title }}</strong> ({{ movie.release_year }})
+            </div>
+            <form method="POST" action="{{ url_for('delete', task_id=movie.id) }}" class="d-inline">
+                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Видалити фільм?')">Видалити</button>
+            </form>
+        </div>
+        <div class="card-body">
+            <p class="mb-1"><strong>Жанр:</strong> {{ movie.genre }}</p>
+            <p class="mb-1"><strong>Режисер:</strong> {{ movie.director }}</p>
+            <p class="mb-1"><strong>Тривалість:</strong> {{ movie.duration_minutes }} хв</p>
+            <p class="mb-3"><strong>Студія:</strong> {{ movie.studio }}</p>
+
+            <h6>Актори та ролі:</h6>
+            {% if movie.actors %}
+            <table class="table table-sm table-striped mb-0">
+                <thead>
+                    <tr>
+                        <th>П.І.Б. актора</th>
+                        <th>Роль</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for actor in movie.actors %}
+                    <tr>
+                        <td>{{ actor.full_name }}</td>
+                        <td>{{ actor.role }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p class="text-muted mb-0">Актори не вказані.</p>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+{% else %}
+<p class="text-muted">Список фільмів порожній. Додайте фільм!</p>
+{% endif %}
+{% endblock %}
