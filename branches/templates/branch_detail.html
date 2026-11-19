@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="breadcrumbs">
+    <a href="{% url 'home' %}">Головна</a>
+    <span class="separator">/</span>
+    <a href="{% url 'branches_list' %}">Філії</a>
+    <span class="separator">/</span>
+    <span class="current">{{ branch.city }}</span>
+</div>
+
+<div class="page-header">
+    <h1>{{ branch.page_title }}</h1>
+    <p>{{ branch.page_lead }}</p>
+</div>
+
+<div class="detail-box">
+    <h2 class="detail-title">Про підрозділ у місті {{ branch.city }}</h2>
+    <p class="mission-text">{{ branch.detail_intro }}</p>
+
+    <ul class="info-list">
+        <li class="info-item">
+            <span class="info-icon">⌖</span>
+            <span class="info-label">Локація:</span>
+            <span class="info-value">{{ branch.address }}</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">◎</span>
+            <span class="info-label">Рік заснування:</span>
+            <span class="info-value">{{ branch.established }}</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">◆</span>
+            <span class="info-label">Спеціалізація:</span>
+            <span class="info-value">{{ branch.specialization }}</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">☎</span>
+            <span class="info-label">Прямий телефон:</span>
+            <span class="info-value">{{ branch.phone }}</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">✉</span>
+            <span class="info-label">Електронна пошта:</span>
+            <span class="info-value">{{ branch.email }}</span>
+        </li>
+    </ul>
+
+    <div class="action-row">
+        <a href="{% url 'branches_list' %}" class="btn btn-outline">&larr; До списку філій</a>
+        <a href="{% url 'history_main' %}" class="btn btn-primary">Історія розвитку філій &rarr;</a>
+    </div>
+</div>
+{% endblock %}

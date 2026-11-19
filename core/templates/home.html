@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load company_extras %}
+
+{% block title %}{{ title }} | ZemNyux Inc.{% endblock %}
+
+{% block brand_subtitle %}Corporate Portal {{ portal_data.hero.year }}{% endblock %}
+
+{% block content %}
+{% with hero=portal_data.hero dashboard=portal_data.dashboard shortcuts=portal_data.shortcuts %}
+<section class="hero-banner">
+    <div class="hero-badge">Міжнародні технології {{ hero.year }}</div>
+    <h1 class="hero-title">{{ hero.company_name }} — Архітектура цифрового майбутнього</h1>
+    <p class="hero-lead">{{ hero.tagline }}</p>
+    <div class="hero-actions">
+        <a href="{% url 'branches_list' %}" class="btn btn-primary">Мережа філій &rarr;</a>
+        <a href="{% url 'contacts' %}" class="btn btn-secondary">Зв'язатися з офісом</a>
+        <a href="{% url 'about' %}" class="btn btn-secondary">Про компанію</a>
+    </div>
+</section>
+
+<div class="page-header">
+    <h2>Ключові показники</h2>
+    <p>Усього показників: {{ dashboard.metrics|length }}</p>
+</div>
+
+<section class="stats-grid">
+    {% for metric in dashboard.metrics %}
+        {% if metric.is_highlight %}
+        <div class="stat-card stat-card-highlight">
+            <div class="stat-number">{{ metric.value }}</div>
+            <div class="stat-label">{{ metric.label }} · акцент</div>
+        </div>
+        {% else %}
+        <div class="stat-card">
+            <div class="stat-number">{{ metric.value }}</div>
+            <div class="stat-label">{{ metric.label }}</div>
+        </div>
+        {% endif %}
+    {% empty %}
+    <p class="empty-hint">Показники ще не додано.</p>
+    {% endfor %}
+</section>
+
+<div class="page-header">
+    <h2>Напрямки діяльності</h2>
+    <p>Доступно напрямів: {{ dashboard.services|length }}</p>
+</div>
+
+<section class="cards-grid">
+    {% for service in dashboard.services %}
+    <div class="card">
+        <div class="card-icon">{{ service.icon }}</div>
+        <h3 class="card-title">{{ service.title }}</h3>
+        <p class="card-text">{{ service.description }}</p>
+        <p class="card-city">{{ service.is_featured|status_badge }}</p>
+    </div>
+    {% empty %}
+    <p class="empty-hint">Напрямки діяльності зʼявляться після наповнення бази.</p>
+    {% endfor %}
+</section>
+
+<div class="page-header">
+    <h2>Швидкий перехід по порталу</h2>
+    <p>Оберіть розділ або скористайтеся вкладеними маршрутами</p>
+</div>
+
+<section class="cards-grid">
+    {% for item in shortcuts.items %}
+    <div class="card">
+        <span class="badge {{ item.badge_class }}">{{ item.badge }}</span>
+        <h3 class="card-title" style="margin-top: 0.75rem;">{{ item.title }}</h3>
+        <p class="card-text">{{ item.text }}</p>
+        <div class="card-footer">
+            <a href="{% url item.url_name %}" class="btn btn-outline" style="width: 100%;">Перейти &rarr;</a>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+{% endwith %}
+{% endblock %}

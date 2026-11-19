@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ title|default:"ZemNyux Inc. — Корпоративний портал" }}{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-container">
+            <a href="{% url 'home' %}" class="brand">
+                <div class="brand-icon">Z</div>
+                <div>
+                    <span class="brand-title">{% block brand_name %}ZemNyux Inc.{% endblock %}</span>
+                    <span class="brand-subtitle">{% block brand_subtitle %}Global Tech Solutions{% endblock %}</span>
+                </div>
+            </a>
+
+            <nav class="main-nav">
+                <a href="{% url 'home' %}" class="nav-link {% if request.path == '/' %}active{% endif %}">Головна</a>
+                <a href="{% url 'about' %}" class="nav-link {% if '/about' in request.path %}active{% endif %}">Про компанію</a>
+                <a href="{% url 'management' %}" class="nav-link {% if '/management' in request.path %}active{% endif %}">Керівництво</a>
+                <a href="{% url 'news' %}" class="nav-link {% if '/news' in request.path %}active{% endif %}">Новини</a>
+                <a href="{% url 'branches_list' %}" class="nav-link {% if '/branches' in request.path %}active{% endif %}">Філії</a>
+                <a href="{% url 'contacts' %}" class="nav-link {% if '/contacts' in request.path %}active{% endif %}">Контакти</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-wrapper">
+        {% block page_intro %}{% endblock %}
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="footer-col">
+                <h4>{% block footer_brand %}ZemNyux Inc.{% endblock %}</h4>
+                <p>{% block footer_text %}Міжнародна інженерна компанія, що спеціалізується на розробці розподілених систем, штучного інтелекту та високонавантаженої архітектури.{% endblock %}</p>
+                <p><small>Платформа: Django 6.1 · Python 3.14+</small></p>
+            </div>
+            <div class="footer-col">
+                <h4>Розділи порталу</h4>
+                <ul class="footer-links">
+                    <li><a href="{% url 'home' %}">Головна сторінка</a></li>
+                    <li><a href="{% url 'about' %}">Про компанію</a></li>
+                    <li><a href="{% url 'management' %}">Рада директорів</a></li>
+                    <li><a href="{% url 'news' %}">Останні події</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Глобальна мережа</h4>
+                <ul class="footer-links">
+                    <li><a href="{% url 'branches_list' %}">Всі філії (Лондон, Париж, Берлін)</a></li>
+                    <li><a href="{% url 'history_main' %}">Історія та хронологія</a></li>
+                    <li><a href="{% url 'contacts' %}">Міжнародні контакти</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 ZemNyux Inc. Всі права захищено.</span>
+            <span>{% block footer_note %}Приклад на вкладені маршрути (Nested Routes){% endblock %}</span>
+        </div>
+    </footer>
+
+</body>
+</html>

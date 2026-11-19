@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Контактні центри та представництва</h1>
+    <p>Знайдіть найближче представництво або зверніться до нашої глобальної служби підтримки</p>
+</div>
+
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+    <div class="flash flash-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="detail-box">
+    <h2 class="detail-title">Головний інформаційний центр</h2>
+    <ul class="info-list">
+        <li class="info-item">
+            <span class="info-icon">☎</span>
+            <span class="info-label">Гаряча лінія:</span>
+            <span class="info-value">+380 800 500 2026 (безкоштовно по Європі)</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">✉</span>
+            <span class="info-label">Загальна пошта:</span>
+            <span class="info-value">info@zemnyux.example · support@zemnyux.example</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">◷</span>
+            <span class="info-label">Графік роботи:</span>
+            <span class="info-value">Пн – Пт: 09:00 – 18:00 (за київським часом / UTC+2)</span>
+        </li>
+    </ul>
+</div>
+
+<div class="page-header">
+    <h2>Написати нам</h2>
+    <p>Форма звернення зберігається в базі та доступна в адмін-панелі</p>
+</div>
+
+<form method="post" class="contact-form" novalidate>
+    {% csrf_token %}
+    <div class="form-grid">
+        <label class="form-field">
+            <span>{{ form.name.label }}</span>
+            {{ form.name }}
+            {{ form.name.errors }}
+        </label>
+        <label class="form-field">
+            <span>{{ form.email.label }}</span>
+            {{ form.email }}
+            {{ form.email.errors }}
+        </label>
+        <label class="form-field form-field-full">
+            <span>{{ form.subject.label }}</span>
+            {{ form.subject }}
+            {{ form.subject.errors }}
+        </label>
+        <label class="form-field form-field-full">
+            <span>{{ form.message.label }}</span>
+            {{ form.message }}
+            {{ form.message.errors }}
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Надіслати запит</button>
+</form>
+
+<div class="page-header">
+    <h2>Оберіть країну представництва</h2>
+    <p>Детальна контактна інформація локальних офісів</p>
+</div>
+
+<div class="cards-grid">
+    {% for country in countries %}
+    <div class="card">
+        <div class="card-icon">{{ country.flag }}</div>
+        <h3 class="card-title">{{ country.name }}</h3>
+        <p class="card-city">{{ country.city }}</p>
+        <p class="card-text">{{ country.short_desc }}</p>
+        <div class="card-footer">
+            <a href="{% url 'contacts_country' country=country.code %}" class="btn btn-primary" style="width: 100%;">
+                Контакти: {{ country.name }} &rarr;
+            </a>
+        </div>
+    </div>
+    {% empty %}
+    <p class="empty-hint">Представництва ще не додано.</p>
+    {% endfor %}
+</div>
+{% endblock %}

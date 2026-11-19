@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }} | ZemNyux Inc.{% endblock %}
+
+{% block content %}
+{% with mission=about_data.mission %}
+<div class="page-header">
+    <h1>Про компанію ZemNyux Inc.</h1>
+    <p>
+        {% if mission.is_public %}
+            Публічний розділ · принципів у списку: {{ mission.principles|length }}
+        {% else %}
+            Розділ тимчасово прихований.
+        {% endif %}
+    </p>
+</div>
+
+<div class="detail-box">
+    <h2 class="detail-title">Наша місія та бачення</h2>
+    <p class="mission-text">
+        ZemNyux Inc. — це міжнародна технологічна компанія, яка поєднує високі стандарти надійності корпоративного ПЗ з інноваційними дослідженнями в галузі штучного інтелекту та децентралізованих архітектур.
+    </p>
+
+    <div class="quote-callout">
+        <strong>Інженерний девіз:</strong>
+        <span> "Чистота коду, стабільність інфраструктури та безперервне масштабування."</span>
+    </div>
+</div>
+
+<div class="page-header">
+    <h2>Ключові принципи нашої роботи</h2>
+    <p>Стандарти, на яких будується співпраця з клієнтами та всередині команд</p>
+</div>
+
+<section class="cards-grid">
+    {% for principle in mission.principles %}
+    <div class="card">
+        <h3 class="card-title">{{ principle.title|upper }}</h3>
+        <p class="card-text">{{ principle.description|truncatewords:22 }}</p>
+    </div>
+    {% empty %}
+    <p class="empty-hint">Принципи компанії ще не додано.</p>
+    {% endfor %}
+</section>
+{% endwith %}
+
+<div class="detail-box centered-box">
+    <h3 class="centered-box-title">Бажаєте дізнатися більше?</h3>
+    <p class="accent-box-text">Перегляньте нашу команду топ-менеджерів або каталог міжнародних філій.</p>
+    <div class="action-row centered">
+        <a href="{% url 'management' %}" class="btn btn-primary">Рада директорів &rarr;</a>
+        <a href="{% url 'branches_list' %}" class="btn btn-outline">Каталог філій &rarr;</a>
+    </div>
+</div>
+{% endblock %}

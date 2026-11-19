@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="breadcrumbs">
+    <a href="{% url 'home' %}">Головна</a>
+    <span class="separator">/</span>
+    <a href="{% url 'contacts' %}">Контакти</a>
+    <span class="separator">/</span>
+    <span class="current">{{ office.name }} ({{ office.city }})</span>
+</div>
+
+<div class="page-header">
+    <h1>{{ office.flag }} {{ office.page_title }}</h1>
+    <p>{{ office.page_lead }}</p>
+</div>
+
+{% for location in locations %}
+<div class="detail-box">
+    <h2 class="detail-title">{{ location.title }}</h2>
+    <ul class="info-list">
+        <li class="info-item">
+            <span class="info-icon">⌖</span>
+            <span class="info-label">Адреса:</span>
+            <span class="info-value">{{ location.address }}</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">☎</span>
+            <span class="info-label">Телефон:</span>
+            <span class="info-value">{{ location.phone }}</span>
+        </li>
+        <li class="info-item">
+            <span class="info-icon">✉</span>
+            <span class="info-label">Email:</span>
+            <span class="info-value">{{ location.email }}</span>
+        </li>
+        {% if location.hours %}
+        <li class="info-item">
+            <span class="info-icon">◷</span>
+            <span class="info-label">Години роботи:</span>
+            <span class="info-value">{{ location.hours }}</span>
+        </li>
+        {% endif %}
+    </ul>
+
+    {% if forloop.last %}
+    <div class="action-row">
+        {% if office.related_branch_slug %}
+        <a href="{% url 'branch_detail' slug=office.related_branch_slug %}" class="btn btn-primary">
+            Переглянути деталі філії &rarr;
+        </a>
+        {% endif %}
+        <a href="{% url 'contacts' %}" class="btn btn-outline">&larr; Всі представництва</a>
+        <a href="{% url 'branches_list' %}" class="btn btn-outline">Каталог філій</a>
+    </div>
+    {% endif %}
+</div>
+{% empty %}
+<div class="detail-box">
+    <p class="empty-hint">Локації для цього представництва ще не додано.</p>
+    <a href="{% url 'contacts' %}" class="btn btn-outline">&larr; Всі представництва</a>
+</div>
+{% endfor %}
+{% endblock %}
