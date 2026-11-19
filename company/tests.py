@@ -4,12 +4,10 @@ from .models import Client, Contract, Department, Employee, Project
 
 
 class CompanyModelsTestCase(TestCase):
-    def test_five_entity_tables_exist_and_are_empty(self):
-        self.assertEqual(Department.objects.count(), 0)
-        self.assertEqual(Employee.objects.count(), 0)
-        self.assertEqual(Project.objects.count(), 0)
-        self.assertEqual(Client.objects.count(), 0)
-        self.assertEqual(Contract.objects.count(), 0)
+    def test_demo_records_populate_all_five_entity_tables(self):
+        for model in (Department, Employee, Project, Client, Contract):
+            with self.subTest(model=model.__name__):
+                self.assertGreater(model.objects.count(), 0)
 
     def test_models_have_four_to_five_fields(self):
         expected = {
