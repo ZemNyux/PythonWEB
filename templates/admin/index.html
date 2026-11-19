@@ -1,0 +1,32 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block content %}
+<section class="control-hero">
+  <div>
+    <p class="eyebrow">ZEMNYUX INC. / CONTROL ROOM</p>
+    <h1>Центр керування компанією</h1>
+    <p>Дані команди, клієнтів і проєктів в одному місці.</p>
+  </div>
+  <a class="hero-link" href="/">Перейти на сайт ↗</a>
+</section>
+<section class="control-stats" aria-label="Керування даними">
+  {% for app in app_list %}{% for model in app.models %}
+  <a class="control-stat" href="{{ model.admin_url }}">
+    <span class="stat-label">{{ app.name }}</span>
+    <strong>{{ model.name }}</strong>
+    <span class="stat-action">Відкрити таблицю <b>↗</b></span>
+  </a>
+  {% endfor %}{% endfor %}
+</section>
+<div class="control-section-title"><div><span class="eyebrow">DATABASE / TABLES</span><h2>Реєстри компанії</h2></div><span class="live-indicator">● СИСТЕМА АКТИВНА</span></div>
+<div id="content-main">
+{% for app in app_list %}
+  <section class="module app-{{ app.app_label }}">
+    <table><caption><a href="{{ app.app_url }}" class="section">{{ app.name }}</a></caption>
+    {% for model in app.models %}<tr class="model-{{ model.object_name|lower }}"><th scope="row"><a href="{{ model.admin_url }}">{{ model.name }}</a></th><td>{% if model.add_url %}<a class="addlink" href="{{ model.add_url }}">Додати</a>{% endif %}</td><td>{% if model.admin_url %}<a class="changelink" href="{{ model.admin_url }}">Переглянути / змінити</a>{% endif %}</td></tr>{% endfor %}
+    </table>
+  </section>
+{% empty %}<p>У вас немає доступу до жодної таблиці.</p>{% endfor %}
+</div>
+{% endblock %}

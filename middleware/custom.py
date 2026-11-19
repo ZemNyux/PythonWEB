@@ -1,6 +1,5 @@
 import time
 def log_requests(get_response):
-    """Логує кожен запит: метод, шлях, час виконання, статус відповіді"""
 
     def middleware(request):
         start_time = time.time()

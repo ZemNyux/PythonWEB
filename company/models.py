@@ -2,7 +2,6 @@ from django.db import models
 
 
 class Department(models.Model):
-    """Відділ компанії."""
 
     name = models.CharField('Назва', max_length=120)
     code = models.SlugField('Код', unique=True, max_length=32)
@@ -20,7 +19,6 @@ class Department(models.Model):
 
 
 class Employee(models.Model):
-    """Працівник компанії."""
 
     full_name = models.CharField("Повне ім'я", max_length=150)
     position = models.CharField('Посада', max_length=120)
@@ -43,7 +41,6 @@ class Employee(models.Model):
 
 
 class Project(models.Model):
-    """Внутрішній або клієнтський проєкт."""
 
     STATUS_CHOICES = [
         ('planned', 'Заплановано'),
@@ -68,7 +65,6 @@ class Project(models.Model):
 
 
 class Client(models.Model):
-    """Клієнт / партнер компанії."""
 
     name = models.CharField('Назва', max_length=180)
     industry = models.CharField('Галузь', max_length=120)
@@ -86,7 +82,6 @@ class Client(models.Model):
 
 
 class Contract(models.Model):
-    """Договір із клієнтом."""
 
     number = models.CharField('Номер договору', max_length=64, unique=True)
     title = models.CharField('Назва', max_length=180)
