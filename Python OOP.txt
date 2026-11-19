@@ -199,3 +199,5 @@ https://github.com/theskumar/python-dotenv
 https://github.com/joke2k/django-environ
 
 https://gist.github.com/sunmeat/9db199f789625477693d349e74b5198e
+
+https://www.w3schools.com/sql/sql_constraints.asp
