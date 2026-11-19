@@ -48,9 +48,20 @@ python manage.py test
 
 ## Моделі та адмінка
 
-Контент зберігається в БД (SQLite за замовчуванням) і наповнюється seed-міграціями:
+Контент порталу зберігається в БД (SQLite) і наповнюється seed-міграціями:
 - `core`: статистика, напрямки, принципи, новини, керівництво, представництва, запити з форми
 - `branches`: філії, хронологія, факти
+
+### Додаток `company` («Моя компанія») — 5 сутностей
+Кожна модель має **5 полів** (без урахування `id`). Після `migrate` у `db.sqlite3` з’являються **порожні** таблиці:
+
+| Модель | Призначення | Поля |
+|--------|-------------|------|
+| `Department` | Відділ | name, code, description, head_name, is_active |
+| `Employee` | Працівник | full_name, position, email, phone, department |
+| `Project` | Проєкт | title, code, status, budget, start_date |
+| `Client` | Клієнт | name, industry, contact_email, country, is_active |
+| `Contract` | Договір | number, title, amount, signed_on, client |
 
 Адмінка: `/admin/` (після `createsuperuser`).
 

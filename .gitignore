@@ -376,3 +376,4 @@ ENV/
 .idea/
 .vscode/
 staticfiles/
+.DS_Store
