@@ -91,3 +91,21 @@ python manage.py test
 3. Стандартні фільтри: `length`, `date`, `truncatewords`, `upper`, `default`.
 4. Кастомні фільтри: `format_phone`, `status_badge` (`core/templatetags/company_extras.py`).
 5. Наслідування: розділи `{% extends 'base.html' %}` і перевизначають блоки `title`, `brand_name`, `page_intro`, `content`, `footer_note`.
+
+## Окремий React-клієнт
+
+У папці [`react-client/`](react-client/) розміщено окремий React-застосунок для панелі компанії. Він отримує дані з Django API `GET /api/company/` та показує відділи, працівників, проєкти, клієнтів і договори.
+
+Запуск локально:
+
+```bash
+# термінал 1 — корінь Django-проєкту
+python manage.py runserver
+
+# термінал 2
+cd react-client
+npm install
+npm run dev
+```
+
+Відкрийте адресу Vite (типово `http://localhost:5173`). Для роботи клієнта потрібен запущений Django-сервер на `http://127.0.0.1:8000`.
