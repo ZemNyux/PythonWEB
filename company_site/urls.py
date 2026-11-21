@@ -3,9 +3,11 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django.views.generic import RedirectView
+from company.views import api_company
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/company/', api_company, name='api_company'),
 
     path('history/', RedirectView.as_view(url='/branches/history/', permanent=False)),
     path('branch/', RedirectView.as_view(url='/branches/', permanent=False)),
