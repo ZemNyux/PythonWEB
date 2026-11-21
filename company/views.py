@@ -6,7 +6,6 @@ from .models import Client, Contract, Department, Employee, Project
 
 @require_http_methods(['GET', 'OPTIONS'])
 def api_company(request):
-    """Return the company dashboard data for the separate local React client."""
     if request.method == 'OPTIONS':
         response = JsonResponse({}, status=204)
     else:
