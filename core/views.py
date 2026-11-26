@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .entities import LeaderProfile, MetricCard, ServiceOffer
-from .forms import ContactInquiryForm
+from .forms import ContactInquiryForm, ProductComplaintForm
 from .models import (
     CompanyPrinciple,
     CompanyStat,
@@ -211,6 +211,27 @@ def contacts(request, country=None):
             'office': office,
             'locations': office.locations.all(),
             'country_code': office.code,
+        },
+    )
+
+
+def product_complaint(request):
+    form = ProductComplaintForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        return render(
+            request,
+            'product_complaint_result.html',
+            {
+                'title': 'Скаргу оформлено',
+                'complaint': form.cleaned_data,
+            },
+        )
+    return render(
+        request,
+        'product_complaint.html',
+        {
+            'title': 'Скарга на товар',
+            'form': form,
         },
     )
 

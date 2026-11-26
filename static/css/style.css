@@ -727,6 +727,100 @@ a:hover {
   box-shadow: var(--shadow-sm);
 }
 
+.complaint-form {
+  max-width: 900px;
+  margin-inline: auto;
+  padding: clamp(1.25rem, 4vw, 2.25rem);
+}
+
+.field-help,
+.form-note {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.form-note {
+  margin: 0 0 1.25rem;
+}
+
+.complaint-result {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(1.25rem, 4vw, 2.25rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-md);
+}
+
+.result-heading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.result-check {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  border-radius: 50%;
+  background: var(--success-bg);
+  color: var(--success);
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.result-kicker {
+  margin-bottom: 0.2rem;
+  color: var(--primary);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.result-heading h2 {
+  color: var(--secondary);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 1.5rem 0;
+}
+
+.result-grid > div {
+  min-width: 0;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: #fbfdfc;
+}
+
+.result-grid dt {
+  margin-bottom: 0.3rem;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.result-grid dd {
+  overflow-wrap: anywhere;
+  color: var(--secondary);
+  font-weight: 600;
+}
+
+.result-grid .result-description {
+  grid-column: 1 / -1;
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -920,5 +1014,11 @@ a:hover {
   }
   .form-grid {
     grid-template-columns: 1fr;
+  }
+  .result-grid {
+    grid-template-columns: 1fr;
+  }
+  .result-grid .result-description {
+    grid-column: auto;
   }
 }

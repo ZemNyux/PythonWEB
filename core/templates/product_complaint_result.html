@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="page-header">
+    <h1>Скаргу сформовано</h1>
+    <p>Перевірте дані, які ви надіслали.</p>
+</div>
+
+<section class="complaint-result" aria-labelledby="complaint-result-title">
+    <div class="result-heading">
+        <span class="result-check" aria-hidden="true">✓</span>
+        <div>
+            <p class="result-kicker">ЗВЕРНЕННЯ ЩОДО ТОВАРУ</p>
+            <h2 id="complaint-result-title">{{ complaint.product_name }}</h2>
+        </div>
+    </div>
+    <dl class="result-grid">
+        <div><dt>Ім’я</dt><dd>{{ complaint.first_name }}</dd></div>
+        <div><dt>Прізвище</dt><dd>{{ complaint.last_name }}</dd></div>
+        <div><dt>Контактний телефон</dt><dd>{{ complaint.phone }}</dd></div>
+        <div><dt>Email</dt><dd>{{ complaint.email }}</dd></div>
+        <div><dt>Дата придбання</dt><dd>{{ complaint.purchase_date|date:'d.m.Y' }}</dd></div>
+        <div class="result-description"><dt>Опис проблеми</dt><dd>{{ complaint.problem_description|linebreaksbr }}</dd></div>
+    </dl>
+    <a class="btn btn-primary" href="{% url 'product_complaint' %}">Створити ще одну скаргу</a>
+</section>
+{% endblock %}

@@ -13,5 +13,6 @@ urlpatterns = [
     re_path(r'^about/.+$', RedirectView.as_view(url='/about/', permanent=False)),
     path('contacts/', views.contacts, name='contacts'),
     path('contacts/<slug:country>/', views.contacts, name='contacts_country'),
+    path('complaint/', views.product_complaint, name='product_complaint'),
     path('branches/', include('branches.urls')),
 ]
