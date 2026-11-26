@@ -1,8 +1,13 @@
 from django.contrib import messages
+from django.contrib.auth.views import redirect_to_login
+from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
+from django.utils.http import url_has_allowed_host_and_scheme
 
+from .accounts_memory import account_for_username, authenticate_account, create_account
 from .entities import LeaderProfile, MetricCard, ServiceOffer
-from .forms import ContactInquiryForm, ProductComplaintForm
+from .forms import AccountLoginForm, ContactInquiryForm, ProductComplaintForm, RegistrationForm
 from .models import (
     CompanyPrinciple,
     CompanyStat,
@@ -13,7 +18,19 @@ from .models import (
 )
 
 
+def _current_site_account(request):
+    username = request.session.get('site_username')
+    account = account_for_username(username) if username else None
+    if username and not account:
+        request.session.pop('site_username', None)
+    return account
+
+
 def home(request):
+    account = _current_site_account(request)
+    if not account:
+        return redirect_to_login(request.get_full_path(), login_url=reverse('account_login'))
+
     db_stats = list(CompanyStat.objects.all())
     db_services = list(ServiceDirection.objects.all())
 
@@ -86,11 +103,67 @@ def home(request):
         'home.html',
         {
             'title': 'Головна сторінка',
+            'account': account,
             'portal_data': portal_data,
             'stats': db_stats,
             'services': db_services,
         },
     )
+
+
+def account_register(request):
+    if _current_site_account(request):
+        return redirect('home')
+
+    form = RegistrationForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        try:
+            account = create_account(
+                form.cleaned_data['username'],
+                form.cleaned_data['email'],
+                form.cleaned_data['password'],
+            )
+        except ValueError as error:
+            form.add_error(None, str(error))
+        else:
+            request.session.cycle_key()
+            request.session['site_username'] = account['username']
+            return redirect('home')
+
+    return render(request, 'registration/register.html', {'title': 'Реєстрація', 'form': form})
+
+
+def account_login(request):
+    if _current_site_account(request):
+        return redirect('home')
+
+    form = AccountLoginForm(request.POST or None)
+    next_url = request.POST.get('next', request.GET.get('next', ''))
+    if request.method == 'POST' and form.is_valid():
+        account = authenticate_account(form.cleaned_data['username'], form.cleaned_data['password'])
+        if account:
+            request.session.cycle_key()
+            request.session['site_username'] = account['username']
+            if next_url and url_has_allowed_host_and_scheme(
+                next_url,
+                allowed_hosts={request.get_host()},
+                require_https=request.is_secure(),
+            ):
+                return redirect(next_url)
+            return redirect('home')
+        form.add_error(None, 'Неправильний логін або пароль.')
+
+    return render(
+        request,
+        'registration/login.html',
+        {'title': 'Вхід', 'form': form, 'next': next_url},
+    )
+
+
+@require_POST
+def account_logout(request):
+    request.session.flush()
+    return redirect('account_login')
 
 
 def news(request):

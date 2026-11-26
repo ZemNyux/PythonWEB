@@ -2,9 +2,12 @@ from datetime import date
 import re
 
 from django import forms
+from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
+from django.contrib.auth.validators import UnicodeUsernameValidator
 
+from .accounts_memory import email_exists, username_exists
 from .models import ContactInquiry
 
 
@@ -65,6 +68,71 @@ class ProductComplaintForm(forms.Form):
         if purchase_date > date.today():
             raise ValidationError('Дата придбання не може бути в майбутньому.')
         return purchase_date
+
+
+class RegistrationForm(forms.Form):
+    username = forms.CharField(
+        label='Логін',
+        min_length=3,
+        max_length=150,
+        validators=[UnicodeUsernameValidator()],
+        widget=forms.TextInput(attrs={'class': 'form-input', 'autocomplete': 'username'}),
+    )
+    email = forms.EmailField(
+        label='Email',
+        max_length=254,
+        widget=forms.EmailInput(attrs={'class': 'form-input', 'autocomplete': 'email'}),
+    )
+    password = forms.CharField(
+        label='Пароль',
+        max_length=128,
+        strip=False,
+        widget=forms.PasswordInput(attrs={'class': 'form-input', 'autocomplete': 'new-password'}),
+    )
+    password_confirm = forms.CharField(
+        label='Підтвердження пароля',
+        max_length=128,
+        strip=False,
+        widget=forms.PasswordInput(attrs={'class': 'form-input', 'autocomplete': 'new-password'}),
+    )
+
+    def clean_username(self):
+        username = self.cleaned_data['username'].strip()
+        if username_exists(username):
+            raise ValidationError('Цей логін уже використовується.')
+        return username
+
+    def clean_email(self):
+        email = self.cleaned_data['email'].strip()
+        if email_exists(email):
+            raise ValidationError('Ця email-адреса вже зареєстрована.')
+        return email
+
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get('password')
+        password_confirm = cleaned_data.get('password_confirm')
+        if password:
+            try:
+                validate_password(password)
+            except ValidationError as error:
+                self.add_error('password', error)
+        if password and password_confirm and password != password_confirm:
+            self.add_error('password_confirm', 'Паролі не збігаються.')
+        return cleaned_data
+
+
+class AccountLoginForm(forms.Form):
+    username = forms.CharField(
+        label='Логін',
+        max_length=150,
+        widget=forms.TextInput(attrs={'class': 'form-input', 'autocomplete': 'username'}),
+    )
+    password = forms.CharField(
+        label='Пароль',
+        strip=False,
+        widget=forms.PasswordInput(attrs={'class': 'form-input', 'autocomplete': 'current-password'}),
+    )
 
 
 class ContactInquiryForm(forms.ModelForm):
