@@ -1,0 +1,21 @@
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'app/css/styles.css' %}">
+
+<div class="contact-container">
+    <div class="contact-card">
+        <h2>{{ title }}</h2>
+        <hr>
+        <form method="post" class="contact-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="btn-wrap">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    Надіслати повідомлення
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
