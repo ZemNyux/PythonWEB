@@ -1,12 +1,13 @@
 from datetime import datetime
 from django.http import HttpRequest
-from django.shortcuts import render, redirect
-from django.contrib import messages
+from django.shortcuts import render
 from app.forms import ContactForm
 
 
 def contact(request):
     """Обробка форми зворотнього зв'язку"""
+    success = False
+    has_errors = False
 
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -22,30 +23,27 @@ def contact(request):
             for field_name, value in form.cleaned_data.items():
                 if value is None or value == '':
                     value = "—"
-                # красивий вивід назв полів
                 label = form.fields[field_name].label or field_name
                 print(f"{label:35} : {value}")
 
             print("=" * 60 + "\n")
 
-            # повідомлення користувачу
-            messages.success(request, 'Ваша заявка успішно надіслана! Дякуємо.')
-
-            # залишаємось на сторінці з формою (Post/Redirect/Get для очищення полів)
-            return redirect('contact')
+            # очищуємо форму та вмикаємо повідомлення про успіх
+            form = ContactForm()
+            success = True
 
         else:
-            # якщо є помилки валідації — форма залишається заповненою, рендеримо сторінку знову
-            messages.error(request, 'Будь ласка, виправте помилки у формі.')
+            has_errors = True
 
     else:
-        # GET-запит — порожня форма
         form = ContactForm()
 
     return render(request, 'app/contact.html', {
         'form': form,
         'title': 'Надішліть ваше повідомлення',
         'year': datetime.now().year,
+        'success': success,
+        'has_errors': has_errors,
     })
 
 
