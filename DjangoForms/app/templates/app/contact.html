@@ -1,26 +1,164 @@
 {% extends "app/layout.html" %}
-
 {% load static %}
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'app/css/styles.css' %}">
 
-<div class="container mt-5">
+<style>
+    .contact-wrapper {
+        max-width: 720px;
+        margin: 35px auto 50px auto;
+        padding: 0 15px;
+    }
+
+    /* Контейнер сповіщень */
+    .custom-alert {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 16px 20px;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        font-size: 16px;
+        line-height: 1.5;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        animation: slideDown 0.35s ease-out;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Успіх */
+    .custom-alert-success {
+        background-color: #eafaf1;
+        border-left: 5px solid #2ecc71;
+        color: #1e6b3e;
+        align-items: center;
+    }
+
+    /* Помилка */
+    .custom-alert-error {
+        background-color: #fdedec;
+        border-left: 5px solid #e74c3c;
+        color: #922b21;
+    }
+
+    .custom-alert-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .custom-alert-success .custom-alert-content {
+        align-items: center;
+    }
+
+    .custom-alert-icon {
+        font-size: 22px;
+        flex-shrink: 0;
+        line-height: 1.2;
+    }
+
+    .custom-alert-errors-list {
+        margin: 8px 0 0 0;
+        padding-left: 18px;
+        font-size: 14.5px;
+    }
+
+    .custom-alert-errors-list li {
+        margin-bottom: 4px;
+    }
+
+    .custom-alert-close {
+        background: none;
+        border: none;
+        font-size: 22px;
+        font-weight: bold;
+        line-height: 1;
+        color: inherit;
+        opacity: 0.6;
+        cursor: pointer;
+        padding: 0 0 0 15px;
+        transition: opacity 0.2s;
+    }
+
+    .custom-alert-close:hover {
+        opacity: 1;
+    }
+
+    /* Кнопка відправки */
+    .btn-submit-custom {
+        margin-top: 20px;
+        padding: 12px 32px;
+        font-size: 16px;
+        font-weight: 600;
+        border-radius: 8px;
+    }
+</style>
+
+<div class="contact-wrapper">
     <h2>{{ title|default:"Заявка на консультацію" }}</h2>
+    <p class="text-muted">Заповніть форму нижче, і ми зв'яжемося з вами найближчим часом.</p>
     <hr>
 
-    <form method="post" class="row g-3">
+    <!-- Сповіщення про успіх -->
+    {% if success %}
+        <div class="custom-alert custom-alert-success" id="alert-box">
+            <div class="custom-alert-content">
+                <span class="custom-alert-icon">✅</span>
+                <div>
+                    <strong>Успіх!</strong> Ваша заявка успішно надіслана! Дякуємо.
+                </div>
+            </div>
+            <button type="button" class="custom-alert-close" onclick="this.parentElement.style.display='none';">&times;</button>
+        </div>
+    {% endif %}
+
+    <!-- Сповіщення про помилку з переліком усіх полів та помилок -->
+    {% if has_errors or form.errors %}
+        <div class="custom-alert custom-alert-error" id="alert-box">
+            <div class="custom-alert-content">
+                <span class="custom-alert-icon">⚠️</span>
+                <div>
+                    <strong>Будь ласка, виправте помилки у формі:</strong>
+                    <ul class="custom-alert-errors-list">
+                        {% for field in form %}
+                            {% if field.errors %}
+                                <li>
+                                    <strong>{{ field.label }}:</strong> {{ field.errors|join:", " }}
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <button type="button" class="custom-alert-close" onclick="this.parentElement.style.display='none';">&times;</button>
+        </div>
+    {% endif %}
+
+    <!-- Форма -->
+    <form method="post" novalidate>
         {% csrf_token %}
 
-        <div class="col-12">
+        <div>
             {{ form.as_div }}
         </div>
 
-        <div class="col-12 mt-4"><br />
-            <button type="submit" class="btn btn-primary btn-lg px-5">
-                Надіслати заявку
-            </button>
-        </div>
+        <button type="submit" class="btn btn-primary btn-submit-custom">
+            Надіслати заявку
+        </button>
     </form>
 </div>
 {% endblock %}
