@@ -4,6 +4,9 @@ from django.views.generic import RedirectView
 from . import views
 
 urlpatterns = [
+    path('accounts/register/', views.account_register, name='account_register'),
+    path('accounts/login/', views.account_login, name='account_login'),
+    path('accounts/logout/', views.account_logout, name='account_logout'),
     path('', views.home, name='home'),
     path('news/', views.news, name='news'),
     re_path(r'^news/.+$', RedirectView.as_view(url='/news/', permanent=False)),

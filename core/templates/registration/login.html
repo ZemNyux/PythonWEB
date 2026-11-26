@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="account-card">
+    <p class="account-kicker">ZEMNYUX / ВХІД</p>
+    <h1>Раді вас бачити</h1>
+    <p class="account-intro">Увійдіть за логіном і паролем, щоб перейти на головну сторінку.</p>
+
+    <form method="post" class="account-form" novalidate>
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
+        {% if form.non_field_errors %}<div class="messages"><div class="flash flash-error">{{ form.non_field_errors }}</div></div>{% endif %}
+        {% for field in form %}
+        <label class="form-field" for="{{ field.id_for_label }}">
+            <span>{{ field.label }}</span>
+            {{ field }}
+            {{ field.errors }}
+        </label>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary account-submit">Увійти</button>
+    </form>
+
+    <p class="account-switch">Ще не маєте облікового запису? <a href="{% url 'account_register' %}">Зареєструватися</a></p>
+</section>
+{% endblock %}

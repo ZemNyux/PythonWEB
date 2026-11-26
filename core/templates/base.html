@@ -31,6 +31,16 @@
                 <a href="{% url 'branches_list' %}" class="nav-link {% if '/branches' in request.path %}active{% endif %}">Філії</a>
                 <a href="{% url 'contacts' %}" class="nav-link {% if '/contacts' in request.path %}active{% endif %}">Контакти</a>
                 <a href="{% url 'product_complaint' %}" class="nav-link {% if '/complaint' in request.path %}active{% endif %}">Скарга на товар</a>
+                {% if site_account %}
+                <span class="account-greeting">Добрий день, {{ site_account.username }}!</span>
+                <form method="post" action="{% url 'account_logout' %}" class="logout-form">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-link logout-link">Вийти</button>
+                </form>
+                {% else %}
+                <a href="{% url 'account_login' %}" class="nav-link {% if '/accounts/login' in request.path %}active{% endif %}">Увійти</a>
+                <a href="{% url 'account_register' %}" class="nav-link {% if '/accounts/register' in request.path %}active{% endif %}">Реєстрація</a>
+                {% endif %}
             </nav>
         </div>
     </header>

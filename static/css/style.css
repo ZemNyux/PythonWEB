@@ -141,6 +141,25 @@ a:hover {
   font-weight: 600;
 }
 
+.account-greeting {
+  color: var(--secondary);
+  font-size: 0.88rem;
+  font-weight: 700;
+  white-space: nowrap;
+  padding: 0.45rem 0.35rem;
+}
+
+.logout-form {
+  display: inline-flex;
+}
+
+.logout-link {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: inherit;
+}
+
 .page-wrapper {
   flex: 1;
   max-width: 1200px;
@@ -725,6 +744,54 @@ a:hover {
   padding: 1.5rem;
   margin-bottom: 2.5rem;
   box-shadow: var(--shadow-sm);
+}
+
+.account-card {
+  width: min(100%, 520px);
+  margin: clamp(1rem, 5vw, 3.5rem) auto;
+  padding: clamp(1.4rem, 5vw, 2.5rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  box-shadow: var(--shadow-lg);
+}
+
+.account-kicker {
+  margin-bottom: 0.55rem;
+  color: var(--primary);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.account-card h1 {
+  margin-bottom: 0.45rem;
+  color: var(--secondary);
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 5vw, 2.3rem);
+  line-height: 1.2;
+}
+
+.account-intro,
+.account-switch {
+  color: var(--text-muted);
+}
+
+.account-form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.account-submit {
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.account-switch {
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: 0.9rem;
 }
 
 .complaint-form {
