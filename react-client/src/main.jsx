@@ -8,6 +8,7 @@ import {
 import './styles.css'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api/company/'
+const PAGE_SIZE = 25
 const sections = [
   { id: 'dashboard', label: 'Огляд', icon: LayoutDashboard },
   { id: 'employees', label: 'Команда', icon: Users },
@@ -114,9 +115,99 @@ function statusLabel(status) { return ({ active: 'В роботі', planned: 'З
 function EmptyInline({ connected, text }) { return <div className="empty-inline"><div className="empty-mark">{connected ? '○' : '↗'}</div><strong>{text}</strong></div> }
 
 function DataSection({ kind, rows, query, onQuery }) {
+  const [currentPage, setCurrentPage] = useState(1)
   const cfg = formats[kind]
   const Icon = cfg.icon
-  return <section className="data-page"><div className="data-heading"><div><div className="eyebrow"><span/>РОБОЧИЙ ПРОСТІР / РЕЄСТР</div><h1>{cfg.title}<span>.</span></h1><p>{cfg.caption}</p></div><button className="export-button" onClick={() => { const blob = new Blob([JSON.stringify(rows, null, 2)], { type: 'application/json' }); const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = `${kind}.json`; link.click(); URL.revokeObjectURL(link.href) }}><ArrowDownRight size={15}/> Експортувати JSON</button></div><div className="data-controls"><div className="data-count"><span className="count-icon"><Icon size={16}/></span><strong>{rows.length}</strong><span>записів у реєстрі</span></div><label className="search-field"><Search size={15}/><input value={query} onChange={(event) => onQuery(event.target.value)} placeholder={cfg.search}/><kbd>⌘ K</kbd></label></div><div className="table-panel"><div className="table-wrap"><table><thead><tr>{cfg.cols.map((col) => <th key={col}>{col}</th>)}</tr></thead><tbody>{rows.map((row) => <DataRow key={row.id} kind={kind} row={row}/>)}</tbody></table>{rows.length === 0 && <div className="table-empty"><div className="empty-illustration"><Icon size={24}/></div><strong>{query ? 'Нічого не знайдено' : 'Тут поки немає записів'}</strong><span>{query ? 'Спробуйте змінити пошуковий запит.' : 'Додайте дані у Django адмінпанелі, щоб побачити їх тут.'}</span></div>}</div><div className="table-footer"><span>Показано <strong>{rows.length}</strong> із <strong>{rows.length}</strong> записів</span><div className="pagination"><button disabled aria-label="Попередня сторінка"><ChevronLeft size={15}/></button><span className="page-current">1</span><button disabled aria-label="Наступна сторінка"><ChevronRight size={15}/></button></div></div></div></section>
+  const pageCount = Math.max(1, Math.ceil(rows.length / PAGE_SIZE))
+  const page = Math.min(currentPage, pageCount)
+  const firstRow = rows.length ? (page - 1) * PAGE_SIZE + 1 : 0
+  const lastRow = Math.min(page * PAGE_SIZE, rows.length)
+  const visibleRows = rows.slice(firstRow - 1, lastRow)
+  const pageWindowStart = Math.max(1, Math.min(page - 2, pageCount - 4))
+  const pageWindowEnd = Math.min(pageCount, pageWindowStart + 4)
+  const pageNumbers = Array.from(
+    { length: pageWindowEnd - pageWindowStart + 1 },
+    (_, index) => pageWindowStart + index,
+  )
+
+  useEffect(() => { setCurrentPage(1) }, [kind, query])
+
+  const exportRows = () => {
+    const blob = new Blob([JSON.stringify(rows, null, 2)], { type: 'application/json' })
+    const link = document.createElement('a')
+    link.href = URL.createObjectURL(blob)
+    link.download = `${kind}.json`
+    link.click()
+    URL.revokeObjectURL(link.href)
+  }
+
+  return (
+    <section className="data-page">
+      <div className="data-heading">
+        <div>
+          <div className="eyebrow"><span/>РОБОЧИЙ ПРОСТІР / РЕЄСТР</div>
+          <h1>{cfg.title}<span>.</span></h1>
+          <p>{cfg.caption}</p>
+        </div>
+        <button className="export-button" onClick={exportRows}>
+          <ArrowDownRight size={15}/> Експортувати JSON
+        </button>
+      </div>
+
+      <div className="data-controls">
+        <div className="data-count">
+          <span className="count-icon"><Icon size={16}/></span>
+          <strong>{rows.length}</strong>
+          <span>записів у реєстрі</span>
+        </div>
+        <label className="search-field">
+          <Search size={15}/>
+          <input value={query} onChange={(event) => onQuery(event.target.value)} placeholder={cfg.search}/>
+          <kbd>⌘ K</kbd>
+        </label>
+      </div>
+
+      <div className="table-panel">
+        <div className="table-wrap">
+          <table>
+            <thead><tr>{cfg.cols.map((col) => <th key={col}>{col}</th>)}</tr></thead>
+            <tbody>{visibleRows.map((row) => <DataRow key={row.id} kind={kind} row={row}/>)}</tbody>
+          </table>
+          {rows.length === 0 && (
+            <div className="table-empty">
+              <div className="empty-illustration"><Icon size={24}/></div>
+              <strong>{query ? 'Нічого не знайдено' : 'Тут поки немає записів'}</strong>
+              <span>{query ? 'Спробуйте змінити пошуковий запит.' : 'Додайте дані у Django адмінпанелі, щоб побачити їх тут.'}</span>
+            </div>
+          )}
+        </div>
+
+        <div className="table-footer">
+          <span>Показано <strong>{firstRow}–{lastRow}</strong> із <strong>{rows.length}</strong> записів</span>
+          <nav className="pagination" aria-label="Сторінки реєстру">
+            <button type="button" disabled={page <= 1} onClick={() => setCurrentPage(page - 1)} aria-label="Попередня сторінка">
+              <ChevronLeft size={15}/>
+            </button>
+            {pageNumbers.map((number) => (
+              <button
+                type="button"
+                key={number}
+                className={number === page ? 'page-current' : 'page-button'}
+                aria-label={`Сторінка ${number}`}
+                aria-current={number === page ? 'page' : undefined}
+                onClick={() => setCurrentPage(number)}
+              >
+                {number}
+              </button>
+            ))}
+            <button type="button" disabled={page >= pageCount} onClick={() => setCurrentPage(page + 1)} aria-label="Наступна сторінка">
+              <ChevronRight size={15}/>
+            </button>
+          </nav>
+        </div>
+      </div>
+    </section>
+  )
 }
 
 function DataRow({ kind, row }) {
